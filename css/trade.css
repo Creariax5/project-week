@@ -21,6 +21,14 @@
     overflow-x: auto;
 }
 
+@media (min-width: 769px) {
+    .trade-tabs {
+        gap: var(--spacing-md);
+        padding: var(--spacing-lg);
+        overflow-x: visible;
+    }
+}
+
 .trade-tab {
     flex: 1;
     min-width: 100px;
@@ -147,6 +155,12 @@
     align-items: center;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
+}
+
+@media (min-width: 769px) {
+    .offer-cards {
+        gap: var(--spacing-lg);
+    }
 }
 
 .offer-side {
