@@ -3,7 +3,7 @@
    =================================== */
 
 .collection-content {
-    background: var(--gray-100);
+    background: transparent;
 }
 
 .collection-stats {
@@ -11,7 +11,10 @@
     grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-sm);
     padding: var(--spacing-md);
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(13, 27, 62, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 89, 255, 0.2);
 }
 
 @media (min-width: 769px) {
@@ -27,11 +30,13 @@
    =============== */
 
 .filters-section {
-    background: var(--primary-light);
+    background: rgba(13, 27, 62, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 89, 255, 0.2);
     border-radius: var(--radius-xl);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .filter-options {
@@ -53,11 +58,13 @@
    =============== */
 
 .progress-section {
-    background: var(--primary-light);
+    background: rgba(13, 27, 62, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 89, 255, 0.2);
     border-radius: var(--radius-xl);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .category-progress {
@@ -80,12 +87,12 @@
 .category-name {
     font-size: var(--text-sm);
     font-weight: 600;
-    color: var(--primary-dark);
+    color: var(--primary-light);
 }
 
 .progress-count {
     font-size: var(--text-sm);
-    color: var(--gray-500);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 600;
 }
 
@@ -94,10 +101,12 @@
    =============== */
 
 .cards-grid-section {
-    background: var(--primary-light);
+    background: rgba(13, 27, 62, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 89, 255, 0.2);
     border-radius: var(--radius-xl);
     padding: var(--spacing-lg);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .view-toggle {

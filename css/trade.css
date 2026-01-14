@@ -3,7 +3,7 @@
    =================================== */
 
 .trade-content {
-    background: var(--gray-100);
+    background: transparent;
 }
 
 /* ===============
@@ -15,9 +15,11 @@
     gap: var(--spacing-sm);
     margin-bottom: var(--spacing-lg);
     padding: var(--spacing-md);
-    background: var(--primary-light);
+    background: rgba(13, 27, 62, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 89, 255, 0.2);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     overflow-x: auto;
 }
 
@@ -33,8 +35,9 @@
     flex: 1;
     min-width: 100px;
     padding: var(--spacing-md);
-    background: var(--gray-100);
-    border: none;
+    background: rgba(13, 27, 62, 0.4);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(0, 89, 255, 0.2);
     border-radius: var(--radius-lg);
     cursor: pointer;
     transition: var(--transition-base);
@@ -43,15 +46,19 @@
     align-items: center;
     gap: var(--spacing-xs);
     position: relative;
+    color: var(--primary-light);
 }
 
 .trade-tab.active {
     background: var(--accent);
     color: var(--primary-light);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(0, 89, 255, 0.4);
 }
 
 .trade-tab:hover:not(.active) {
-    background: var(--gray-200);
+    background: rgba(0, 89, 255, 0.2);
+    border-color: var(--accent);
 }
 
 .tab-icon {
