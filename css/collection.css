@@ -3,7 +3,7 @@
    =================================== */
 
 .collection-content {
-    background: transparent;
+    background: #f8f9fa;
 }
 
 .collection-stats {
@@ -11,10 +11,9 @@
     grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-sm);
     padding: var(--spacing-md);
-    background: rgba(13, 27, 62, 0.4);
-    backdrop-filter: blur(10px);
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(0, 89, 255, 0.2);
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    border: 1px solid #e5e7eb;
 }
 
 @media (min-width: 769px) {
@@ -30,13 +29,12 @@
    =============== */
 
 .filters-section {
-    background: rgba(13, 27, 62, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 89, 255, 0.2);
-    border-radius: var(--radius-xl);
+    background: var(--card-bg);
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .filter-options {
@@ -58,13 +56,12 @@
    =============== */
 
 .progress-section {
-    background: rgba(13, 27, 62, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 89, 255, 0.2);
-    border-radius: var(--radius-xl);
+    background: var(--card-bg);
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .category-progress {
@@ -86,14 +83,14 @@
 
 .category-name {
     font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--primary-light);
+    font-weight: 500;
+    color: var(--text-primary);
 }
 
 .progress-count {
     font-size: var(--text-sm);
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 600;
+    color: var(--text-secondary);
+    font-weight: 500;
 }
 
 /* ===============
@@ -101,12 +98,11 @@
    =============== */
 
 .cards-grid-section {
-    background: rgba(13, 27, 62, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 89, 255, 0.2);
-    border-radius: var(--radius-xl);
+    background: var(--card-bg);
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .view-toggle {

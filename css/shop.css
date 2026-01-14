@@ -3,7 +3,7 @@
    =================================== */
 
 .shop-content {
-    background: transparent;
+    background: #f8f9fa;
 }
 
 .shop-banner {
@@ -51,21 +51,20 @@
 }
 
 .pack-card {
-    background: rgba(13, 27, 62, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 89, 255, 0.2);
-    border-radius: var(--radius-xl);
+    background: var(--card-bg);
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     position: relative;
     overflow: hidden;
     transition: var(--transition-base);
 }
 
 .pack-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 48px rgba(0, 89, 255, 0.4);
-    border-color: rgba(0, 89, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: var(--accent);
 }
 
 .pack-card::before {
