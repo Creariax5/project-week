@@ -2,6 +2,14 @@
    CARD DETAIL PAGE STYLES (DARK)
    =================================== */
 
+.app-header.transparent {
+    border-bottom: none !important;
+}
+
+.bottom-nav {
+    display: none;
+}
+
 .card-detail-content {
     padding: 0;
     padding-bottom: 120px;
@@ -10,6 +18,10 @@
 }
 
 @media (min-width: 769px) {
+    .app-container {
+        grid-template-columns: 1fr;
+    }
+    
     .card-detail-content {
         padding-bottom: var(--spacing-xl);
     }

@@ -361,7 +361,6 @@
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-sm) 0;
-    border-bottom: 1px solid #e5e7eb;
 }
 
 .info-item:last-child {

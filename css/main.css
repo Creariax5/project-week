@@ -93,6 +93,18 @@ body {
     flex-direction: column;
 }
 
+.main-content.resize-fix {
+    max-width: 94%;
+}
+
+.app-header.resize-fix {
+    max-width: 94%;
+}
+
+.app-header.transparent {
+    box-shadow: none;
+}
+
 @media (min-width: 769px) {
     .app-container {
         display: grid;
@@ -136,7 +148,7 @@ body {
     background: transparent;
     position: absolute;
     width: 100%;
-    box-shadow: none;
+    box-shadow: 0px 0px 0px 0px !important;
 }
 
 .header-content {
