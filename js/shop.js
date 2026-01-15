@@ -46,17 +46,16 @@ function purchasePack(packType, price) {
     // Deduct credits
     Credits.subtract(price);
     updateCreditsDisplay();
-    
     // Open pack
-    const cards = PackOpening.openPack(packType);
+    //const cards = PackOpening.openPack(packType);
     
     // Add cards to collection
-    cards.forEach(card => {
-        UserCollection.addCard(card.id);
-    });
+    //cards.forEach(card => {
+    //    UserCollection.addCard(card.id);
+   // });
     
     // Show pack opening animation
-    showPackOpening(cards);
+   // showPackOpening(cards);
 }
 
 function purchaseBundle(bundleType, price) {
