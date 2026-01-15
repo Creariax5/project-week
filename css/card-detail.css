@@ -72,7 +72,7 @@
     width: 100%;
     aspect-ratio: 9 / 12;
     background: linear-gradient(135deg, #2a2e2e 0%, #323737 100%);
-    border: 1px solid var(--gray-200);
+    border: none;
     border-radius: var(--radius-xl);
     padding: var(--spacing-lg);
     box-shadow: 0 12px 32px rgba(0,0,0,0.45);
@@ -102,20 +102,6 @@
 
 .card-front:hover::before {
     left: 100%;
-}
-
-/* Rarity */
-
-.card-front.legendary {
-    background: linear-gradient(135deg, var(--legendary) 0%, #d97706 100%);
-}
-
-.card-front.ultra-rare {
-    background: linear-gradient(135deg, var(--ultra-rare) 0%, #6d28d9 100%);
-}
-
-.card-front.rare {
-    background: linear-gradient(135deg, var(--rare) 0%, #1d4ed8 100%);
 }
 
 /* ===============
