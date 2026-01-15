@@ -126,16 +126,6 @@
     width: 100%;
     flex: 1;
 }
-    border-radius: var(--radius-md);
-    margin-bottom: var(--spacing-md);
-    margin-top: var(--spacing-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    min-height: 200px;
-    position: relative;
-}
 
 .card-image-container img {
     width: 100%;

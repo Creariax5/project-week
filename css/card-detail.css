@@ -340,3 +340,55 @@
 .action-btn.primary:hover {
     background: var(--accent-dark);
 }
+
+/* ===================================
+   FIX: ENLEVER LA BARRE À GAUCHE
+   =================================== */
+
+/* Force le conteneur principal à ne pas utiliser de grille */
+.app-container {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: none !important;
+    grid-template-areas: none !important;
+}
+
+/* Masquer toute barre latérale potentielle */
+.sidebar,
+.side-nav,
+.left-sidebar,
+aside,
+nav.main-nav {
+    display: none !important;
+}
+
+/* S'assurer que le contenu principal prend toute la largeur */
+.main-content,
+.card-detail-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    grid-column: auto !important;
+}
+
+/* Pour les écrans moyens et grands */
+@media (min-width: 769px) {
+    .app-container {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: none !important;
+    }
+    
+    .card-detail-content {
+        padding-bottom: var(--spacing-xl);
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+}
+
+/* Centrer le header si nécessaire */
+.app-header {
+    width: 100% !important;
+}
