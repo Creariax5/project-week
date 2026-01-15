@@ -60,7 +60,7 @@ function displayCard(card) {
         if (card.image) {
             imageEl.innerHTML = `<img src="${card.image}" alt="${card.name}" style="width: 100%; height: 100%; object-fit: cover;">`;
         } else {
-            imageEl.innerHTML = `<div class="placeholder-image">${card.icon || '🏇'}</div>`;
+            imageEl.innerHTML = `<div class="placeholder-image">${card.icon || '♞'}</div>`;
         }
     }
     
@@ -141,7 +141,7 @@ function displayHistory(card) {
         if (historyContainer) {
             historyContainer.innerHTML = `
                 <div class="timeline-item">
-                    <div class="timeline-icon">📅</div>
+                    <div class="timeline-icon">●</div>
                     <div class="timeline-content">
                         <h4>Première obtention</h4>
                         <p>${formatDate(cardData.obtainedAt)}</p>
@@ -149,7 +149,7 @@ function displayHistory(card) {
                 </div>
                 ${cardData.count > 1 ? `
                 <div class="timeline-item">
-                    <div class="timeline-icon">🔄</div>
+                    <div class="timeline-icon">○</div>
                     <div class="timeline-content">
                         <h4>Dernière obtention</h4>
                         <p>${formatDate(cardData.lastObtained)}</p>
@@ -253,10 +253,10 @@ function updateFavoriteButton() {
     const cardData = collection.find(c => c.id === currentCard.id);
     
     if (cardData?.favorite) {
-        favoriteBtn.textContent = '⭐';
+        favoriteBtn.textContent = '★';
         favoriteBtn.style.color = '#F59E0B';
     } else {
-        favoriteBtn.textContent = '⭐';
+        favoriteBtn.textContent = '☆';
         favoriteBtn.style.color = 'inherit';
     }
 }
