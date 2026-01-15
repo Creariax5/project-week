@@ -67,11 +67,8 @@
 .trading-card {
     width: 280px;
     height: 400px;
-    background: #ffffff;
-    border: 2px solid #1a1a1a;
-    border-radius: var(--radius-xl);
+    background: transparent;
     padding: 0;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
@@ -79,10 +76,20 @@
     flex-direction: column;
 }
 
+.trading-card .card-image-container {
+    flex: 1;
+}
+
+.trading-card .card-image {
+    width: 100%;
+    height: 100%;
+}
+
 .trading-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 @media (min-width: 769px) {
@@ -99,62 +106,26 @@
     }
 }
 
-.trading-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, 
-        transparent 30%, 
-        rgba(255, 255, 255, 0.1) 50%, 
-        transparent 70%);
-    pointer-events: none;
-}
-
-.trading-card.common {
-    background: linear-gradient(135deg, #71717a 0%, #52525b 100%);
-}
-
-.trading-card.rare {
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-}
-
-.trading-card.ultra-rare {
-    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
-}
-
-.trading-card.legendary {
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-}
-
+.trading-card.common,
+.trading-card.rare,
+.trading-card.ultra-rare,
+.trading-card.legendary,
 .trading-card.mythic {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    background: transparent;
 }
 
 .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: var(--spacing-sm);
-    gap: var(--spacing-sm);
+    display: none;
 }
 
 .card-category {
-    background: rgba(255, 255, 255, 0.2);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-sm);
-    font-size: var(--text-xs);
-    color: var(--primary-light);
-    font-weight: 600;
-    text-transform: uppercase;
+    display: none;
 }
 
 .card-image-container {
     width: 100%;
     flex: 1;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
     border-radius: var(--radius-md);
     margin-bottom: var(--spacing-md);
     margin-top: var(--spacing-md);
@@ -173,6 +144,13 @@
     border-radius: var(--radius-md);
 }
 
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .placeholder-image {
     font-size: 5rem;
     opacity: 0.3;
@@ -180,36 +158,24 @@
 }
 
 .card-info {
-    color: var(--primary-light);
+    display: none;
 }
 
 .card-info .card-name {
-    font-size: var(--text-lg);
-    font-weight: 700;
-    margin-bottom: var(--spacing-xs);
-    line-height: 1.2;
+    display: none;
 }
 
 .card-subtitle {
-    font-size: var(--text-xs);
-    opacity: 0.8;
+    display: none;
 }
 
 .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: var(--spacing-sm);
-    padding-top: var(--spacing-sm);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    gap: var(--spacing-sm);
+    display: none;
 }
 
 .card-number,
 .card-edition {
-    font-size: var(--text-xs);
-    color: var(--primary-light);
-    opacity: 0.7;
+    display: none;
 }
 
 /* ===============

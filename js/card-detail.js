@@ -58,7 +58,7 @@ function displayCard(card) {
     
     if (imageEl) {
         if (card.image) {
-            imageEl.innerHTML = `<img src="${card.image}" alt="${card.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg);" onerror="this.innerHTML='<div class=\"placeholder-image\">${card.icon || '\ud83c\udfcf'}</div>'">`;
+            imageEl.innerHTML = `<img src="${card.image}" alt="${card.name}" style="width: 100%; height: 100%; object-fit: cover;">`;
         } else {
             imageEl.innerHTML = `<div class="placeholder-image">${card.icon || '🏇'}</div>`;
         }

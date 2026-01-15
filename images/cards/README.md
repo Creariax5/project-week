@@ -15,7 +15,7 @@ Les images de cartes doivent être au format de carte verticale (comme l'exemple
 
 Utilisez un nom de fichier simple et descriptif :
 - Format : `nom-prenom.jpg` ou `nom-carte.jpg`
-- Exemple : `penelope-leprevost.jpg`
+- Exemple : `penelope-leprevost.png`
 - Pas d'espaces, utilisez des tirets `-`
 - Tout en minuscules
 
@@ -41,7 +41,7 @@ Dans le fichier `js/data.js`, ajoutez le champ `image` à la carte :
     nationality: '🇫🇷', 
     icon: '👤', 
     total: 12000,
-    image: 'images/cards/penelope-leprevost.jpg'  // ← Ajouter cette ligne
+    image: 'images/cards/penelope-leprevost.png'  // ← Ajouter cette ligne
 }
 ```
 
@@ -66,7 +66,7 @@ L'image de Pénélope Leprevost fournie montre le style attendu :
 - Design professionnel style carte de collection
 
 Pour ajouter cette image :
-1. Enregistrez l'image sous `images/cards/penelope-leprevost.jpg`
+1. Enregistrez l'image sous `images/cards/penelope-leprevost.png`
 2. La carte CAV-001 est déjà configurée pour utiliser cette image
 
 ## Créer vos propres cartes

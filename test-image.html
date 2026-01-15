@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-test {
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            display: block;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Test d'affichage d'image</h1>
+        
+        <div id="status" class="status">Chargement...</div>
+        
+        <img 
+            src="images/cards/penelope-leprevost.png" 
+            alt="Pénélope Leprevost" 
+            class="image-test"
+            onload="imageLoaded()"
+            onerror="imageError()"
+        >
+        
+        <div style="margin-top: 20px; font-size: 14px; color: #666;">
+            <p><strong>Chemin testé :</strong> images/cards/penelope-leprevost.png</p>
+            <p><strong>URL complète :</strong> <span id="full-url"></span></p>
+        </div>
+    </div>
+    
+    <script>
+        // Afficher l'URL complète de l'image
+        const img = document.querySelector('.image-test');
+        document.getElementById('full-url').textContent = img.src;
+        
+        function imageLoaded() {
+            const status = document.getElementById('status');
+            status.className = 'status success';
+            status.textContent = '✅ Image chargée avec succès !';
+        }
+        
+        function imageError() {
+            const status = document.getElementById('status');
+            status.className = 'status error';
+            status.textContent = '❌ Erreur : L\'image n\'a pas pu être chargée';
+        }
+    </script>
+</body>
+</html>
