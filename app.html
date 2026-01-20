@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon du Cheval 2026 - Collection de Cartes</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/collection.css">
+    <link rel="stylesheet" href="css/shop.css">
+    <link rel="stylesheet" href="css/scan.css">
+    <link rel="stylesheet" href="css/trade.css">
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <style>
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+        .bottom-nav .nav-item.active {
+            color: var(--accent);
+            background: rgba(54, 193, 210, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">🏇 Salon du Cheval 2026</h1>
+                <div class="user-stats">
+                    <span class="stat-item">
+                        <span class="stat-icon">💰</span>
+                        <span id="header-credits">500</span>
+                    </span>
+                    <span class="stat-item">
+                        <span class="stat-icon">🎴</span>
+                        <span id="header-cards">0</span>
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- ACCUEIL -->
+            <section id="page-home" class="page-section active">
+                <div class="hero-section">
+                    <h2 class="hero-title">Collectionnez les cartes du Salon du Cheval</h2>
+                    <p class="hero-subtitle">Scannez, échangez et complétez votre collection</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-cards-stat">0</div>
+                        <div class="stat-label">Cartes possédées</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="unique-cards-stat">0</div>
+                        <div class="stat-label">Cartes uniques</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="completion-stat">0%</div>
+                        <div class="stat-label">Complétion</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="credits-stat">500</div>
+                        <div class="stat-label">Crédits</div>
+                    </div>
+                </div>
+
+                <section class="featured-section">
+                    <h2 class="section-title">🌟 Cartes en vedette</h2>
+                    <div class="featured-cards" id="featured-cards"></div>
+                </section>
+
+                <section class="quick-actions">
+                    <h3>Actions rapides</h3>
+                    <div class="action-buttons">
+                        <button class="action-card" onclick="navigateTo('shop')">
+                            <span class="action-icon">◈</span>
+                            <span class="action-label">Boutique</span>
+                        </button>
+                        <button class="action-card" onclick="navigateTo('scan')">
+                            <span class="action-icon">◉</span>
+                            <span class="action-label">Scanner</span>
+                        </button>
+                        <button class="action-card" onclick="navigateTo('collection')">
+                            <span class="action-icon">■</span>
+                            <span class="action-label">Collection</span>
+                        </button>
+                    </div>
+                </section>
+            </section>
+
+            <!-- BOUTIQUE -->
+            <section id="page-shop" class="page-section shop-content">
+                <h2 class="page-title">Boutique de Packs</h2>
+                <div class="credits-display">
+                    <span class="credits-label">Vos crédits:</span>
+                    <span class="credits-amount" id="shop-credits">500</span>
+                    <span class="credits-icon">💰</span>
+                </div>
+
+                <div class="packs-grid" id="packs-grid"></div>
+                <div id="pack-opening-animation"></div>
+            </section>
+
+            <!-- SCANNER -->
+            <section id="page-scan" class="page-section scan-content">
+                <h2 class="page-title">Scanner une carte</h2>
+                <div class="scanner-container">
+                    <p class="scan-instruction" id="scan-instruction">Scannez un QR code ou entrez le code manuellement</p>
+                    
+                    <div id="qr-reader" class="qr-reader"></div>
+                    
+                    <div class="scanner-controls">
+                        <button class="scanner-btn" id="start-scan">📷 Démarrer le scan</button>
+                        <button class="scanner-btn secondary" id="stop-scan" style="display: none;">⏹ Arrêter</button>
+                        <button class="scanner-btn secondary" id="switch-camera" style="display: none;">🔄 Changer de caméra</button>
+                    </div>
+                    
+                    <div class="manual-input" style="margin-top: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Ou entrez le code manuellement</h3>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <input type="text" id="manual-code" placeholder="Ex: A7F3K9B2" maxlength="8"
+                                style="flex: 1; padding: 0.75rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; font-family: monospace; text-transform: uppercase; background: var(--card-bg); color: var(--text-primary);" />
+                            <button id="submit-manual" class="scanner-btn" style="padding: 0.75rem 1.5rem;">✓ Valider</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-scans">
+                    <h3 class="section-title">Dernières cartes scannées</h3>
+                    <div class="recent-cards-list" id="recent-scans">
+                        <p class="empty-state">Aucune carte scannée récemment</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLLECTION -->
+            <section id="page-collection" class="page-section collection-content">
+                <h2 class="page-title">Ma Collection</h2>
+                
+                <div class="collection-stats">
+                    <div class="progress-card">
+                        <h3>Progression</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="collection-progress" style="width: 0%"></div>
+                        </div>
+                        <p class="progress-text"><span id="owned-count">0</span> / <span id="total-count">34</span> cartes</p>
+                    </div>
+                </div>
+
+                <div class="collection-filters">
+                    <select id="category-filter" class="filter-select">
+                        <option value="all">Toutes les catégories</option>
+                        <option value="disciplines">Disciplines</option>
+                        <option value="cavaliers">Cavaliers</option>
+                        <option value="chevaux">Chevaux</option>
+                        <option value="duos">Duos</option>
+                        <option value="moments">Moments</option>
+                        <option value="event">Événements</option>
+                    </select>
+                    
+                    <select id="rarity-filter" class="filter-select">
+                        <option value="all">Toutes les raretés</option>
+                        <option value="common">Commun</option>
+                        <option value="rare">Rare</option>
+                        <option value="ultra-rare">Ultra Rare</option>
+                        <option value="legendary">Légendaire</option>
+                        <option value="mythic">Mythique</option>
+                    </select>
+                    
+                    <select id="owned-filter" class="filter-select">
+                        <option value="all">Toutes</option>
+                        <option value="owned">Possédées</option>
+                        <option value="missing">Manquantes</option>
+                    </select>
+                </div>
+
+                <div class="cards-grid" id="collection-grid"></div>
+            </section>
+
+            <!-- ÉCHANGER -->
+            <section id="page-trade" class="page-section trade-content">
+                <h2 class="page-title">Échanger des cartes</h2>
+                <div class="trade-info">
+                    <p>Fonctionnalité d'échange en cours de développement...</p>
+                    <p>Bientôt disponible !</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-page="home" onclick="navigateTo('home')">
+                <span class="nav-icon">⌂</span>
+                <span class="nav-label">Accueil</span>
+            </button>
+            <button class="nav-item" data-page="shop" onclick="navigateTo('shop')">
+                <span class="nav-icon">◈</span>
+                <span class="nav-label">Boutique</span>
+            </button>
+            <button class="nav-item" data-page="scan" onclick="navigateTo('scan')">
+                <span class="nav-icon">◉</span>
+                <span class="nav-label">Scanner</span>
+            </button>
+            <button class="nav-item" data-page="collection" onclick="navigateTo('collection')">
+                <span class="nav-icon">■</span>
+                <span class="nav-label">Collection</span>
+            </button>
+            <button class="nav-item" data-page="trade" onclick="navigateTo('trade')">
+                <span class="nav-icon">⇄</span>
+                <span class="nav-label">Échanger</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="scan-modal">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content scan-modal-content">
+            <button class="close-modal" id="close-scan">×</button>
+            <div class="scan-result" id="scan-result"></div>
+        </div>
+    </div>
+
+    <div id="pack-modal" class="modal">
+        <div class="modal-content pack-modal-content">
+            <button class="close-modal" onclick="closePackModal()">×</button>
+            <div id="pack-cards-container"></div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
