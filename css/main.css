@@ -267,6 +267,7 @@ body {
     padding-bottom: 100px; /* Space for bottom nav on mobile */
     max-width: 100%;
     flex: 1;
+    overflow-x: hidden;
 }
 
 @media (min-width: 769px) {
@@ -392,6 +393,10 @@ body {
     overflow-x: auto;
     padding-bottom: var(--spacing-sm);
     scrollbar-width: none;
+    margin-left: calc(-1 * var(--spacing-md));
+    margin-right: calc(-1 * var(--spacing-md));
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
 }
 
 .featured-cards::-webkit-scrollbar {
@@ -687,8 +692,31 @@ body {
     
     .featured-cards {
         gap: var(--spacing-lg);
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--accent) transparent;
+        margin-left: calc(-1 * var(--spacing-xl));
+        margin-right: calc(-1 * var(--spacing-xl));
+        padding-left: var(--spacing-xl);
+        padding-right: var(--spacing-xl);
+    }
+    
+    .featured-cards::-webkit-scrollbar {
+        display: block;
+        height: 8px;
+    }
+    
+    .featured-cards::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    .featured-cards::-webkit-scrollbar-thumb {
+        background: var(--accent);
+        border-radius: 4px;
+    }
+    
+    .featured-cards::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-dark);
     }
     
     .news-list {
