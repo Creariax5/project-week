@@ -196,8 +196,15 @@ function onScanFailure(error) {
 }
 
 function extractCardIdFromUrl(url) {
+    // Try to validate as secret code first (8 characters alphanumeric)
+    if (/^[A-Z0-9]{8}$/i.test(url.trim())) {
+        const cardId = validateSecretCode(url.trim());
+        if (cardId) {
+            return cardId;
+        }
+    }
+    
     // Extract card ID from URL like: https://creariax5.github.io/project-week/card-detail.html?id=DISC-001
-    // Support multiple formats
     let match = url.match(/[?&]id=([A-Z]+-\d+)/i);
     
     // If not found, try old format

@@ -204,11 +204,12 @@
             cardEl.className = `qr-card ${card.rarity}`;
 
             const qrId = `qr-${card.id}`;
-            const qrUrl = `https://creariax5.github.io/project-week/card-detail.html?id=${card.id}`;
+            const secretCode = generateSecretCode(card.id);
 
             cardEl.innerHTML = `
                 <h3>${card.name}</h3>
                 <p class="qr-card-id">${card.id} - ${getRarityLabel(card.rarity)}</p>
+                <p class="qr-card-id" style="font-family: monospace; color: #10B981;">🔐 ${secretCode}</p>
                 <div class="qr-code-container">
                     <div id="${qrId}"></div>
                 </div>
@@ -220,12 +221,12 @@
             // Generate QR code after element is added to DOM
             setTimeout(() => {
                 new QRCode(document.getElementById(qrId), {
-                    text: qrUrl,
-                    width: 200,
-                    height: 200,
+                    text: secretCode,
+                    width: 128,
+                    height: 128,
                     colorDark: "#000000",
                     colorLight: "#ffffff",
-                    correctLevel: QRCode.CorrectLevel.H
+                    correctLevel: QRCode.CorrectLevel.M
                 });
             }, 0);
 

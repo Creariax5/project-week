@@ -131,3 +131,32 @@ function getCardsByCategory(category) {
 function getCardsByRarity(rarity) {
     return getAllCards().filter(card => card.rarity === rarity);
 }
+
+// Hash function for secret codes
+function generateSecretCode(cardId) {
+    const SECRET_SALT = 'SALON_CHEVAL_2026_SECRET';
+    const input = cardId + SECRET_SALT;
+    let hash = 0;
+    
+    for (let i = 0; i < input.length; i++) {
+        const char = input.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    
+    // Convert to base36 and make it 8 characters
+    const code = Math.abs(hash).toString(36).toUpperCase().padStart(8, '0');
+    return code.substring(0, 8);
+}
+
+function validateSecretCode(secretCode) {
+    const allCards = getAllCards();
+    
+    for (const card of allCards) {
+        if (generateSecretCode(card.id) === secretCode.toUpperCase()) {
+            return card.id;
+        }
+    }
+    
+    return null;
+}
