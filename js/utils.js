@@ -3,7 +3,7 @@
 // ===================================
 
 // Local Storage Management
-window.Storage = window.Storage || {
+var AppStorage = {
     get: function(key, defaultValue) {
         if (defaultValue === undefined) defaultValue = null;
         try {
@@ -46,12 +46,13 @@ window.Storage = window.Storage || {
     }
 };
 
-var Storage = window.Storage;
+// Alias pour compatibilité
+var Storage = AppStorage;
 
 // User Collection Management
 var UserCollection = UserCollection || {
     getCollection() {
-        return Storage.get('userCollection', []);
+        return AppStorage.get('userCollection', []);
     },
     
     addCard(cardId) {
@@ -86,7 +87,7 @@ var UserCollection = UserCollection || {
             }
         }
         
-        Storage.set('userCollection', collection);
+        AppStorage.set('userCollection', collection);
         return collection;
     },
     
@@ -106,7 +107,7 @@ var UserCollection = UserCollection || {
         const card = collection.find(c => c.id === cardId);
         if (card) {
             card.favorite = !card.favorite;
-            Storage.set('userCollection', collection);
+            AppStorage.set('userCollection', collection);
         }
         return card?.favorite;
     },
@@ -130,13 +131,13 @@ var UserCollection = UserCollection || {
 // Credits Management
 var Credits = Credits || {
     getBalance() {
-        return Storage.get('userCredits', 500);
+        return AppStorage.get('userCredits', 500);
     },
     
     add(amount) {
         const current = this.getBalance();
         const newBalance = current + amount;
-        Storage.set('userCredits', newBalance);
+        AppStorage.set('userCredits', newBalance);
         return newBalance;
     },
     
@@ -144,7 +145,7 @@ var Credits = Credits || {
         const current = this.getBalance();
         if (current >= amount) {
             const newBalance = current - amount;
-            Storage.set('userCredits', newBalance);
+            AppStorage.set('userCredits', newBalance);
             return newBalance;
         }
         return null; // Insufficient funds

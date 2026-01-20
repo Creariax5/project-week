@@ -280,7 +280,7 @@ function scanCard(cardId) {
 }
 
 function saveRecentScan(card) {
-    let recentScans = Storage.get('recentScans', []);
+    let recentScans = AppStorage.get('recentScans', []);
     
     // Add to beginning
     recentScans.unshift({
@@ -291,11 +291,11 @@ function saveRecentScan(card) {
     // Keep only last 10
     recentScans = recentScans.slice(0, 10);
     
-    Storage.set('recentScans', recentScans);
+    AppStorage.set('recentScans', recentScans);
 }
 
 function loadRecentScans() {
-    const recentScans = Storage.get('recentScans', []);
+    const recentScans = AppStorage.get('recentScans', []);
     const container = document.getElementById('recent-scans');
     
     if (!container) return;
