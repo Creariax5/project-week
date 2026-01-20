@@ -169,6 +169,8 @@ function onScanSuccess(decodedText, decodedResult) {
     // Extract card ID from URL
     const cardId = extractCardIdFromUrl(decodedText);
     
+    console.log('Card ID extrait:', cardId);
+    
     if (cardId) {
         // Stop scanning temporarily
         html5QrcodeScanner.pause(true);
@@ -183,7 +185,8 @@ function onScanSuccess(decodedText, decodedResult) {
             }
         }, 3000);
     } else {
-        showToast('QR Code invalide', 'error');
+        console.error('Impossible d\'extraire l\'ID de:', decodedText);
+        showToast(`QR Code invalide. URL: ${decodedText.substring(0, 50)}...`, 'error');
     }
 }
 
@@ -194,28 +197,49 @@ function onScanFailure(error) {
 
 function extractCardIdFromUrl(url) {
     // Extract card ID from URL like: https://creariax5.github.io/project-week/card-detail.html?id=DISC-001
-    const match = url.match(/[?&]id=([A-Z]+-\d+)/);
-    return match ? match[1] : null;
+    // Support multiple formats
+    let match = url.match(/[?&]id=([A-Z]+-\d+)/i);
+    
+    // If not found, try old format
+    if (!match) {
+        match = url.match(/\/card\/([A-Z]+-\d+)/i);
+    }
+    
+    // If still not found, check if URL itself is just the card ID
+    if (!match && /^[A-Z]+-\d+$/i.test(url)) {
+        return url.toUpperCase();
+    }
+    
+    return match ? match[1].toUpperCase() : null;
 }
 
 function scanCard(cardId) {
+    showToast(`🔍 Recherche carte ${cardId}...`, 'info');
+    
     const card = getCardById(cardId);
+    
     if (!card) {
-        showToast('Carte non trouvée !', 'error');
+        showToast(`❌ Carte ${cardId} non trouvée !`, 'error');
         return;
     }
     
-    // Add to collection
-    UserCollection.addCard(cardId);
+    showToast(`✅ Carte trouvée: ${card.name}`, 'success');
     
-    // Save to recent scans
-    saveRecentScan(card);
-    
-    // Show success modal
-    showScanSuccess(card);
-    
-    // Reload recent scans
-    loadRecentScans();
+    try {
+        // Add to collection
+        UserCollection.addCard(cardId);
+        
+        // Save to recent scans
+        saveRecentScan(card);
+        
+        // Show success modal
+        showScanSuccess(card);
+        
+        // Reload recent scans
+        loadRecentScans();
+    } catch (error) {
+        showToast('❌ Erreur: ' + error.message, 'error');
+    }
 }
 
 function saveRecentScan(card) {
