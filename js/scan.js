@@ -317,7 +317,7 @@ function loadRecentScans() {
         cardEl.className = 'recent-card-item';
         cardEl.innerHTML = `
             <div class="recent-card-thumbnail ${card.rarity}">
-                ${card.image ? `<img src="${card.image}" alt="${card.name}" loading="lazy" decoding="async">` : `<div class="placeholder-icon">${card.icon || '🏇'}</div>`}
+                ${card.image ? `<img src="${card.image}" alt="${card.name}" loading="lazy" decoding="async">` : ''}
             </div>
             <div class="recent-card-info">
                 <h4>${card.name}</h4>
@@ -375,7 +375,7 @@ function showScanSuccess(card) {
                 </div>
                 <div class="card-image-container">
                     <div class="card-image">
-                        ${card.image ? `<img src="${card.image}" alt="${card.name}" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg);" onerror="this.outerHTML='<div class=\"placeholder-image\">${card.icon || '🏇'}</div>'">` : `<div class="placeholder-image">${card.icon || '🏇'}</div>`}
+                        ${card.image ? `<img src="${card.image}" alt="${card.name}" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg);">` : ''}
                     </div>
                 </div>
                 <div class="card-info">

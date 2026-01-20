@@ -60,7 +60,7 @@ function displayCard(card) {
         if (card.image) {
             imageEl.innerHTML = `<img src="${card.image}" alt="${card.name}" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">`;
         } else {
-            imageEl.innerHTML = `<div class="placeholder-image">${card.icon || '♞'}</div>`;
+            imageEl.innerHTML = '';
         }
     }
     
