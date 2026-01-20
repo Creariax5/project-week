@@ -200,7 +200,7 @@ function createCollectionCardElement(card) {
     cardEl.innerHTML = `
         ${owned ? `<div class="card-owned-badge">✓</div>` : ''}
         <div class="card-thumbnail ${card.rarity}">
-            ${card.image && owned ? `<img src="${card.image}" alt="${card.name}" style="width: 100%; height: 100%; object-fit: cover;">` : `<div class="card-thumbnail-icon">${card.icon || '🏇'}</div>`}
+            ${card.image && owned ? `<img src="${card.image}" alt="${card.name}" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">` : `<div class="card-thumbnail-icon">${card.icon || '🏇'}</div>`}
         </div>
         <div class="card-info-bottom">
             <div class="card-number-small">#${card.id}</div>

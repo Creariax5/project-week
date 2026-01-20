@@ -351,3 +351,181 @@ function showToast(message, type = 'info') {
         setTimeout(() => toast.remove(), 300);
     }, 3000);
 }
+
+// ===================================
+// IMAGE OPTIMIZATION
+// ===================================
+
+// Image cache pour éviter les rechargements
+const ImageCache = {
+    cache: new Map(),
+    
+    load(src, onLoad, onError) {
+        // Vérifier si l'image est déjà en cache
+        if (this.cache.has(src)) {
+            const cached = this.cache.get(src);
+            if (cached.loaded) {
+                onLoad && onLoad(cached.img);
+                return cached.img;
+            }
+        }
+        
+        // Créer une nouvelle image
+        const img = new Image();
+        this.cache.set(src, { img, loaded: false });
+        
+        img.onload = () => {
+            this.cache.set(src, { img, loaded: true });
+            onLoad && onLoad(img);
+        };
+        
+        img.onerror = () => {
+            this.cache.delete(src);
+            onError && onError();
+        };
+        
+        img.src = src;
+        return img;
+    },
+    
+    preload(sources) {
+        sources.forEach(src => this.load(src));
+    },
+    
+    clear() {
+        this.cache.clear();
+    }
+};
+
+// Lazy load observer pour les images
+const LazyImageObserver = {
+    observer: null,
+    
+    init() {
+        if (!('IntersectionObserver' in window)) {
+            return; // Fallback pour les anciens navigateurs
+        }
+        
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.dataset.src;
+                    
+                    if (src) {
+                        ImageCache.load(src, 
+                            () => {
+                                img.src = src;
+                                img.classList.add('loaded');
+                                img.removeAttribute('data-src');
+                            },
+                            () => {
+                                img.classList.add('error');
+                            }
+                        );
+                    }
+                    
+                    this.observer.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px', // Charger les images 50px avant qu'elles soient visibles
+            threshold: 0.01
+        });
+    },
+    
+    observe(img) {
+        if (this.observer) {
+            this.observer.observe(img);
+        }
+    }
+};
+
+// Créer une image optimisée
+function createOptimizedImage(src, alt, placeholder = '🏇') {
+    const container = document.createElement('div');
+    container.className = 'image-container';
+    container.style.position = 'relative';
+    
+    if (!src) {
+        container.innerHTML = `<div class="placeholder-image">${placeholder}</div>`;
+        return container;
+    }
+    
+    // Placeholder pendant le chargement
+    const placeholderDiv = document.createElement('div');
+    placeholderDiv.className = 'image-placeholder';
+    placeholderDiv.style.cssText = 'width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1);';
+    placeholderDiv.innerHTML = placeholder;
+    container.appendChild(placeholderDiv);
+    
+    // Image
+    const img = document.createElement('img');
+    img.alt = alt;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.style.cssText = 'width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.3s;';
+    
+    ImageCache.load(src,
+        () => {
+            img.src = src;
+            img.style.opacity = '1';
+            placeholderDiv.style.display = 'none';
+        },
+        () => {
+            container.innerHTML = `<div class="placeholder-image">${placeholder}</div>`;
+        }
+    );
+    
+    container.appendChild(img);
+    return container;
+}
+
+// Précharger les images critiques
+function preloadCriticalImages() {
+    const criticalImages = [];
+    
+    // Trouver les images visibles dans le viewport
+    const images = document.querySelectorAll('img[src]');
+    images.forEach(img => {
+        const rect = img.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            criticalImages.push(img.src);
+        }
+    });
+    
+    ImageCache.preload(criticalImages);
+}
+
+// Compresser l'URL d'image (utiliser des versions WebP si disponibles)
+function getOptimizedImageUrl(url, width = null) {
+    if (!url) return null;
+    
+    // Si le navigateur supporte WebP, essayer de charger la version WebP
+    if (supportsWebP()) {
+        const webpUrl = url.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+        return webpUrl;
+    }
+    
+    return url;
+}
+
+// Vérifier le support WebP
+function supportsWebP() {
+    const elem = document.createElement('canvas');
+    if (elem.getContext && elem.getContext('2d')) {
+        return elem.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+    }
+    return false;
+}
+
+// Initialiser le lazy loading au chargement de la page
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        LazyImageObserver.init();
+        preloadCriticalImages();
+    });
+} else {
+    LazyImageObserver.init();
+    preloadCriticalImages();
+}
