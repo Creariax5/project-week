@@ -23,6 +23,8 @@ function setupScannerControls() {
     const startBtn = document.getElementById('start-scan');
     const stopBtn = document.getElementById('stop-scan');
     const switchBtn = document.getElementById('switch-camera');
+    const manualInput = document.getElementById('manual-code');
+    const submitManualBtn = document.getElementById('submit-manual');
     
     if (startBtn) {
         startBtn.addEventListener('click', startScanning);
@@ -34,6 +36,34 @@ function setupScannerControls() {
     
     if (switchBtn) {
         switchBtn.addEventListener('click', switchCamera);
+    }
+    
+    if (submitManualBtn && manualInput) {
+        submitManualBtn.addEventListener('click', () => {
+            const code = manualInput.value.trim().toUpperCase();
+            if (code.length === 8) {
+                const cardId = extractCardIdFromUrl(code);
+                if (cardId) {
+                    scanCard(cardId);
+                    manualInput.value = '';
+                } else {
+                    showToast('❌ Code invalide', 'error');
+                }
+            } else {
+                showToast('⚠️ Le code doit faire 8 caractères', 'error');
+            }
+        });
+        
+        manualInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                submitManualBtn.click();
+            }
+        });
+        
+        // Auto-uppercase
+        manualInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.toUpperCase();
+        });
     }
 }
 

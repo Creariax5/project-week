@@ -25,7 +25,7 @@
         <main class="main-content scan-content">
             <section class="scanner-section">
                 <div class="scanner-container">
-                    <p class="scan-instruction" id="scan-instruction">Cliquez sur "Démarrer le scan" pour activer la caméra</p>
+                    <p class="scan-instruction" id="scan-instruction">Scannez un QR code ou entrez le code manuellement</p>
                     
                     <div id="qr-reader" class="qr-reader"></div>
                     
@@ -39,6 +39,25 @@
                         <button class="scanner-btn secondary" id="switch-camera" style="display: none;">
                             🔄 Changer de caméra
                         </button>
+                    </div>
+                    
+                    <div class="manual-input" style="margin-top: 2rem;">
+                        <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Ou entrez le code manuellement</h3>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <input 
+                                type="text" 
+                                id="manual-code" 
+                                placeholder="Ex: A7F3K9B2" 
+                                maxlength="8"
+                                style="flex: 1; padding: 0.75rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; font-family: monospace; text-transform: uppercase; background: var(--card-bg); color: var(--text-primary);"
+                            />
+                            <button 
+                                id="submit-manual" 
+                                class="scanner-btn"
+                                style="padding: 0.75rem 1.5rem;">
+                                ✓ Valider
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -56,7 +75,7 @@
                     <li>✓ Assurez-vous d'avoir un bon éclairage</li>
                     <li>✓ Tenez le QR code bien droit face à la caméra</li>
                     <li>✓ Évitez les reflets sur la carte</li>
-                    <li>✓ Le QR code se trouve au dos de la carte</li>
+                    <li>✓ Le code secret à 8 caractères est affiché sur le QR code</li>
                     <li>✓ Maintenez une distance de 10-20cm</li>
                 </ul>
             </section>
