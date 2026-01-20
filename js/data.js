@@ -2,7 +2,7 @@
 // DATA.JS - Database of all cards
 // ===================================
 
-const CARDS_DATABASE = {
+var CARDS_DATABASE = CARDS_DATABASE || {
     disciplines: [
         // Saut d'obstacles
         { id: 'DISC-001', name: 'Saut d\'obstacles - Bronze', category: 'disciplines', discipline: 'Saut d\'obstacles', rarity: 'common', color: '#3B82F6', icon: '🐎', total: 15000, image: 'images/cards/cheval-qui-saute.jpg' },
@@ -74,7 +74,7 @@ const CARDS_DATABASE = {
 };
 
 // Rarity weights for pack opening
-const RARITY_WEIGHTS = {
+var RARITY_WEIGHTS = RARITY_WEIGHTS || {
     starter: {
         common: 0.75,
         rare: 0.20,

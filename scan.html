@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/scan.css">
+    <!-- QR Code Scanner Library -->
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -23,38 +25,22 @@
         <main class="main-content scan-content">
             <section class="scanner-section">
                 <div class="scanner-container">
-                    <div class="camera-view" id="camera-view">
-                        <div class="scan-frame">
-                            <div class="corner top-left"></div>
-                            <div class="corner top-right"></div>
-                            <div class="corner bottom-left"></div>
-                            <div class="corner bottom-right"></div>
-                            <div class="scan-line"></div>
-                        </div>
-                        <p class="scan-instruction">Placez la carte dans le cadre</p>
-                    </div>
+                    <p class="scan-instruction" id="scan-instruction">Cliquez sur "Démarrer le scan" pour activer la caméra</p>
+                    
+                    <div id="qr-reader" class="qr-reader"></div>
                     
                     <div class="scanner-controls">
-                        <button class="scanner-btn" id="activate-camera">
-                            ◉ Activer la caméra
+                        <button class="scanner-btn" id="start-scan">
+                            📷 Démarrer le scan
                         </button>
-                        <button class="scanner-btn secondary" id="manual-entry">
-                            ⌨ Entrer le code manuellement
+                        <button class="scanner-btn secondary" id="stop-scan" style="display: none;">
+                            ⏹ Arrêter
+                        </button>
+                        <button class="scanner-btn secondary" id="switch-camera" style="display: none;">
+                            🔄 Changer de caméra
                         </button>
                     </div>
                 </div>
-            </section>
-
-            <section class="manual-entry-section" id="manual-section" style="display: none;">
-                <h3>Entrer le code de la carte</h3>
-                <div class="code-input-group">
-                    <input type="text" class="code-input" maxlength="4" placeholder="XXXX" id="code-1">
-                    <span class="separator">-</span>
-                    <input type="text" class="code-input" maxlength="4" placeholder="XXXX" id="code-2">
-                    <span class="separator">-</span>
-                    <input type="text" class="code-input" maxlength="4" placeholder="XXXX" id="code-3">
-                </div>
-                <button class="validate-code-btn" id="validate-code">Valider</button>
             </section>
 
             <section class="recent-scans">
@@ -68,9 +54,10 @@
                 <h3>Conseils de scan</h3>
                 <ul class="tips-list">
                     <li>✓ Assurez-vous d'avoir un bon éclairage</li>
-                    <li>✓ Tenez la carte bien droite</li>
+                    <li>✓ Tenez le QR code bien droit face à la caméra</li>
                     <li>✓ Évitez les reflets sur la carte</li>
-                    <li>✓ Le code se trouve au dos de la carte</li>
+                    <li>✓ Le QR code se trouve au dos de la carte</li>
+                    <li>✓ Maintenez une distance de 10-20cm</li>
                 </ul>
             </section>
         </main>
@@ -98,6 +85,24 @@
                 <span class="nav-label">Échanger</span>
             </a>
         </nav>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="scan-modal">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content scan-modal-content">
+            <button class="close-modal" id="close-scan">×</button>
+            <div class="scan-result" id="scan-result">
+                <!-- Card will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/scan.js"></script>
+</body>
+</html>
     </div>
 
     <!-- Scan Success Modal -->

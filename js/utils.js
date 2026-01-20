@@ -3,7 +3,7 @@
 // ===================================
 
 // Local Storage Management
-const Storage = {
+var Storage = Storage || {
     get(key, defaultValue = null) {
         try {
             const item = localStorage.getItem(key);
@@ -46,7 +46,7 @@ const Storage = {
 };
 
 // User Collection Management
-const UserCollection = {
+var UserCollection = UserCollection || {
     getCollection() {
         return Storage.get('userCollection', []);
     },
@@ -125,7 +125,7 @@ const UserCollection = {
 };
 
 // Credits Management
-const Credits = {
+var Credits = Credits || {
     getBalance() {
         return Storage.get('userCredits', 500);
     },
@@ -153,7 +153,7 @@ const Credits = {
 };
 
 // Pack Opening Logic
-const PackOpening = {
+var PackOpening = PackOpening || {
     openPack(packType) {
         const weights = RARITY_WEIGHTS[packType];
         const cards = [];
@@ -191,7 +191,7 @@ const PackOpening = {
 };
 
 // Modal Management
-const Modal = {
+var Modal = Modal || {
     open(modalId) {
         const modal = document.getElementById(modalId);
         if (modal) {
@@ -357,7 +357,7 @@ function showToast(message, type = 'info') {
 // ===================================
 
 // Image cache pour éviter les rechargements
-const ImageCache = {
+var ImageCache = ImageCache || {
     cache: new Map(),
     
     load(src, onLoad, onError) {
@@ -398,7 +398,7 @@ const ImageCache = {
 };
 
 // Lazy load observer pour les images
-const LazyImageObserver = {
+var LazyImageObserver = LazyImageObserver || {
     observer: null,
     
     init() {

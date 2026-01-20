@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de QR Codes - Salon du Cheval 2026</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <!-- QR Code Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        .qr-generator-content {
+            padding: var(--spacing-xl);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .qr-card {
+            background: var(--card-bg);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .qr-card h3 {
+            font-size: var(--text-lg);
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+        
+        .qr-card-id {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .qr-code-container {
+            background: white;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+            display: inline-block;
+        }
+        
+        .download-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition-base);
+        }
+        
+        .download-btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+        
+        .generate-all-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: var(--text-lg);
+            margin-bottom: var(--spacing-xl);
+            transition: var(--transition-base);
+        }
+        
+        .generate-all-btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+        
+        .filter-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .filter-select {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--gray-200);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: var(--text-base);
+            margin-right: var(--spacing-md);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-nav">
+                <a href="index.html" class="back-btn">← Retour</a>
+                <h1>Générateur de QR Codes</h1>
+            </div>
+        </header>
+
+        <main class="main-content qr-generator-content">
+            <section class="intro-section">
+                <h2>Générer des QR Codes pour les cartes</h2>
+                <p>Cette page permet de générer des QR codes pour toutes les cartes de la collection.</p>
+                <p>Chaque QR code contient l'URL unique de la carte et peut être scanné pour l'ajouter à votre collection.</p>
+            </section>
+
+            <section class="filter-section">
+                <select class="filter-select" id="category-filter">
+                    <option value="all">Toutes les catégories</option>
+                    <option value="disciplines">Disciplines</option>
+                    <option value="cavaliers">Cavaliers</option>
+                    <option value="chevaux">Chevaux</option>
+                    <option value="duos">Duos</option>
+                    <option value="moments">Moments</option>
+                    <option value="event">Événements</option>
+                </select>
+                
+                <select class="filter-select" id="rarity-filter">
+                    <option value="all">Toutes les raretés</option>
+                    <option value="common">Commun</option>
+                    <option value="rare">Rare</option>
+                    <option value="ultra-rare">Ultra Rare</option>
+                    <option value="legendary">Légendaire</option>
+                    <option value="mythic">Mythique</option>
+                </select>
+                
+                <button class="generate-all-btn" id="download-all">
+                    📥 Télécharger tous les QR codes
+                </button>
+            </section>
+
+            <section class="card-grid" id="qr-grid">
+                <!-- QR codes will be generated here -->
+            </section>
+        </main>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script>
+        let currentFilter = {
+            category: 'all',
+            rarity: 'all'
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupFilters();
+            generateQRCodes();
+        });
+
+        function setupFilters() {
+            const categoryFilter = document.getElementById('category-filter');
+            const rarityFilter = document.getElementById('rarity-filter');
+            const downloadAllBtn = document.getElementById('download-all');
+
+            categoryFilter.addEventListener('change', (e) => {
+                currentFilter.category = e.target.value;
+                generateQRCodes();
+            });
+
+            rarityFilter.addEventListener('change', (e) => {
+                currentFilter.rarity = e.target.value;
+                generateQRCodes();
+            });
+
+            downloadAllBtn.addEventListener('click', downloadAllQRCodes);
+        }
+
+        function generateQRCodes() {
+            const grid = document.getElementById('qr-grid');
+            grid.innerHTML = '';
+
+            let cards = getAllCards();
+
+            // Apply filters
+            if (currentFilter.category !== 'all') {
+                cards = cards.filter(card => card.category === currentFilter.category);
+            }
+
+            if (currentFilter.rarity !== 'all') {
+                cards = cards.filter(card => card.rarity === currentFilter.rarity);
+            }
+
+            cards.forEach(card => {
+                const qrCard = createQRCard(card);
+                grid.appendChild(qrCard);
+            });
+        }
+
+        function createQRCard(card) {
+            const cardEl = document.createElement('div');
+            cardEl.className = `qr-card ${card.rarity}`;
+
+            const qrId = `qr-${card.id}`;
+            const qrUrl = `https://salon-cheval-2026.fr/card/${card.id}`;
+
+            cardEl.innerHTML = `
+                <h3>${card.name}</h3>
+                <p class="qr-card-id">${card.id} - ${getRarityLabel(card.rarity)}</p>
+                <div class="qr-code-container">
+                    <div id="${qrId}"></div>
+                </div>
+                <button class="download-btn" onclick="downloadQRCode('${card.id}', '${card.name}')">
+                    📥 Télécharger
+                </button>
+            `;
+
+            // Generate QR code after element is added to DOM
+            setTimeout(() => {
+                new QRCode(document.getElementById(qrId), {
+                    text: qrUrl,
+                    width: 200,
+                    height: 200,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }, 0);
+
+            return cardEl;
+        }
+
+        function downloadQRCode(cardId, cardName) {
+            const qrElement = document.getElementById(`qr-${cardId}`);
+            const canvas = qrElement.querySelector('canvas');
+            
+            if (canvas) {
+                const link = document.createElement('a');
+                link.download = `QR-${cardId}-${cardName.replace(/\s+/g, '-')}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+                showToast(`QR code téléchargé: ${cardName}`, 'success');
+            }
+        }
+
+        function downloadAllQRCodes() {
+            let cards = getAllCards();
+
+            if (currentFilter.category !== 'all') {
+                cards = cards.filter(card => card.category === currentFilter.category);
+            }
+
+            if (currentFilter.rarity !== 'all') {
+                cards = cards.filter(card => card.rarity === currentFilter.rarity);
+            }
+
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    downloadQRCode(card.id, card.name);
+                }, index * 200); // Delay between downloads
+            });
+
+            showToast(`Téléchargement de ${cards.length} QR codes...`, 'success');
+        }
+    </script>
+</body>
+</html>

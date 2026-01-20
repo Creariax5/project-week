@@ -1,107 +1,201 @@
 // ===================================
-// SCAN.JS - Scan page logic
+// SCAN.JS - QR Code Scanner with Real Camera
 // ===================================
 
-document.addEventListener('DOMContentLoaded', () => {
-    initScan();
-});
+var html5QrcodeScanner = html5QrcodeScanner || null;
+var currentCameraId = currentCameraId || null;
+var cameras = cameras || [];
+
+if (!window.scanInitialized) {
+    window.scanInitialized = true;
+    document.addEventListener('DOMContentLoaded', () => {
+        initScan();
+    });
+}
 
 function initScan() {
-    setupCameraButton();
-    setupManualEntry();
+    setupScannerControls();
     loadRecentScans();
     setupScanModal();
 }
 
-function setupCameraButton() {
-    const activateBtn = document.getElementById('activate-camera');
-    const cameraView = document.getElementById('camera-view');
+function setupScannerControls() {
+    const startBtn = document.getElementById('start-scan');
+    const stopBtn = document.getElementById('stop-scan');
+    const switchBtn = document.getElementById('switch-camera');
     
-    if (activateBtn) {
-        activateBtn.addEventListener('click', () => {
-            // Simulate camera activation
-            activateBtn.textContent = '📷 Caméra active...';
-            activateBtn.disabled = true;
-            
-            // Simulate scanning after 2 seconds
-            setTimeout(() => {
-                const randomCard = getRandomCard();
-                scanCard(randomCard.id);
-                activateBtn.textContent = '📷 Activer la caméra';
-                activateBtn.disabled = false;
-            }, 2000);
-        });
+    if (startBtn) {
+        startBtn.addEventListener('click', startScanning);
+    }
+    
+    if (stopBtn) {
+        stopBtn.addEventListener('click', stopScanning);
+    }
+    
+    if (switchBtn) {
+        switchBtn.addEventListener('click', switchCamera);
     }
 }
 
-function setupManualEntry() {
-    const manualEntryBtn = document.getElementById('manual-entry');
-    const manualSection = document.getElementById('manual-section');
-    const codeInputs = document.querySelectorAll('.code-input');
-    const validateBtn = document.getElementById('validate-code');
-    
-    if (manualEntryBtn && manualSection) {
-        manualEntryBtn.addEventListener('click', () => {
-            const isHidden = manualSection.style.display === 'none';
-            manualSection.style.display = isHidden ? 'block' : 'none';
-            manualSection.classList.add('slide-in-up');
-        });
-    }
-    
-    // Auto-focus next input
-    codeInputs.forEach((input, index) => {
-        input.addEventListener('input', (e) => {
-            if (e.target.value.length === 4 && index < codeInputs.length - 1) {
-                codeInputs[index + 1].focus();
-            }
-            checkCodeComplete();
-        });
+async function startScanning() {
+    try {
+        const startBtn = document.getElementById('start-scan');
+        const stopBtn = document.getElementById('stop-scan');
+        const switchBtn = document.getElementById('switch-camera');
+        const instruction = document.getElementById('scan-instruction');
         
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
-                codeInputs[index - 1].focus();
+        // Get available cameras
+        try {
+            cameras = await Html5Qrcode.getCameras();
+        } catch (err) {
+            console.error('Erreur lors de la détection des caméras:', err);
+            showToast('Impossible de détecter les caméras. Veuillez autoriser l\'accès à la caméra.', 'error');
+            instruction.textContent = '⚠️ Veuillez autoriser l\'accès à la caméra dans les paramètres de votre navigateur';
+            instruction.style.color = '#EF4444';
+            return;
+        }
+        
+        if (cameras && cameras.length > 0) {
+            // Use back camera by default (better for scanning)
+            currentCameraId = cameras.length > 1 ? cameras[1].id : cameras[0].id;
+            
+            // Initialize scanner
+            html5QrcodeScanner = new Html5Qrcode("qr-reader");
+            
+            const config = {
+                fps: 10,
+                qrbox: function(viewfinderWidth, viewfinderHeight) {
+                    // Square QR box
+                    let minEdgePercentage = 0.7;
+                    let minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
+                    let qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
+                    return {
+                        width: qrboxSize,
+                        height: qrboxSize
+                    };
+                },
+                aspectRatio: 1.0
+            };
+            
+            // Start scanning
+            await html5QrcodeScanner.start(
+                currentCameraId,
+                config,
+                onScanSuccess,
+                onScanFailure
+            );
+            
+            // Update UI
+            startBtn.style.display = 'none';
+            stopBtn.style.display = 'inline-block';
+            if (cameras.length > 1) {
+                switchBtn.style.display = 'inline-block';
             }
-        });
-    });
-    
-    if (validateBtn) {
-        validateBtn.addEventListener('click', validateCode);
+            instruction.textContent = '📷 Scanner actif - Placez le QR code dans le cadre';
+            instruction.style.color = '#10B981';
+            
+            showToast('Scanner activé !', 'success');
+        } else {
+            showToast('Aucune caméra détectée. Vérifiez que votre appareil dispose d\'une caméra.', 'error');
+            instruction.textContent = '⚠️ Aucune caméra détectée';
+            instruction.style.color = '#EF4444';
+        }
+    } catch (err) {
+        console.error('Erreur lors du démarrage du scanner:', err);
+        const instruction = document.getElementById('scan-instruction');
+        
+        if (err.name === 'NotFoundError' || err.message.includes('not found')) {
+            showToast('Aucune caméra trouvée. Vérifiez les permissions.', 'error');
+            instruction.textContent = '⚠️ Aucune caméra disponible. Vérifiez les permissions dans les paramètres.';
+        } else if (err.name === 'NotAllowedError' || err.message.includes('permission')) {
+            showToast('Accès à la caméra refusé. Veuillez autoriser l\'accès.', 'error');
+            instruction.textContent = '⚠️ Accès à la caméra refusé. Cliquez sur "Autoriser" dans votre navigateur.';
+        } else {
+            showToast('Erreur: Impossible d\'accéder à la caméra', 'error');
+            instruction.textContent = '⚠️ Erreur: ' + err.message;
+        }
+        
+        instruction.style.color = '#EF4444';
     }
 }
 
-function checkCodeComplete() {
-    const codeInputs = document.querySelectorAll('.code-input');
-    const validateBtn = document.getElementById('validate-code');
-    
-    const allFilled = Array.from(codeInputs).every(input => input.value.length === 4);
-    
-    if (validateBtn) {
-        validateBtn.disabled = !allFilled;
+async function stopScanning() {
+    try {
+        if (html5QrcodeScanner) {
+            await html5QrcodeScanner.stop();
+            html5QrcodeScanner.clear();
+            html5QrcodeScanner = null;
+        }
+        
+        const startBtn = document.getElementById('start-scan');
+        const stopBtn = document.getElementById('stop-scan');
+        const switchBtn = document.getElementById('switch-camera');
+        const instruction = document.getElementById('scan-instruction');
+        
+        startBtn.style.display = 'inline-block';
+        stopBtn.style.display = 'none';
+        switchBtn.style.display = 'none';
+        instruction.textContent = 'Placez le QR code de la carte dans le cadre';
+        instruction.style.color = '';
+        
+        showToast('Scanner arrêté', 'info');
+    } catch (err) {
+        console.error('Erreur lors de l\'arrêt du scanner:', err);
     }
 }
 
-function validateCode() {
-    const codeInputs = document.querySelectorAll('.code-input');
-    const code = Array.from(codeInputs).map(input => input.value).join('-');
+async function switchCamera() {
+    if (cameras.length < 2) return;
     
-    // Find card by code (simulated - in real app would verify with backend)
-    const cardId = findCardByCode(code);
+    try {
+        await stopScanning();
+        
+        // Switch to next camera
+        const currentIndex = cameras.findIndex(cam => cam.id === currentCameraId);
+        const nextIndex = (currentIndex + 1) % cameras.length;
+        currentCameraId = cameras[nextIndex].id;
+        
+        await startScanning();
+        showToast('Caméra changée', 'info');
+    } catch (err) {
+        console.error('Erreur lors du changement de caméra:', err);
+        showToast('Erreur lors du changement de caméra', 'error');
+    }
+}
+
+function onScanSuccess(decodedText, decodedResult) {
+    console.log('QR Code scanné:', decodedText);
+    
+    // Extract card ID from URL
+    const cardId = extractCardIdFromUrl(decodedText);
     
     if (cardId) {
+        // Stop scanning temporarily
+        html5QrcodeScanner.pause(true);
+        
+        // Process the scanned card
         scanCard(cardId);
-        // Reset inputs
-        codeInputs.forEach(input => input.value = '');
+        
+        // Resume after 3 seconds
+        setTimeout(() => {
+            if (html5QrcodeScanner) {
+                html5QrcodeScanner.resume();
+            }
+        }, 3000);
     } else {
-        showToast('Code invalide !', 'error');
+        showToast('QR Code invalide', 'error');
     }
 }
 
-function findCardByCode(code) {
-    // Simulate code validation
-    // In real app, this would make an API call
-    const allCards = getAllCards();
-    const randomCard = allCards[Math.floor(Math.random() * allCards.length)];
-    return randomCard.id;
+function onScanFailure(error) {
+    // This is called frequently, so we don't show errors
+    // console.warn('Scan failed:', error);
+}
+
+function extractCardIdFromUrl(url) {
+    // Extract card ID from URL like: https://salon-cheval-2026.fr/card/DISC-001
+    const match = url.match(/\/card\/([A-Z]+-\d+)/);
+    return match ? match[1] : null;
 }
 
 function scanCard(cardId) {
@@ -156,97 +250,116 @@ function loadRecentScans() {
         const card = getCardById(scan.cardId);
         if (!card) return;
         
-        const scanEl = document.createElement('a');
-        scanEl.href = `card-detail.html?id=${card.id}`;
-        scanEl.className = 'recent-card-item';
-        scanEl.innerHTML = `
-            <div class="recent-card-icon">${card.icon || '🏇'}</div>
-            <div class="recent-card-name">${card.name}</div>
-            <div class="recent-card-time">${formatDate(scan.scannedAt)}</div>
+        const count = UserCollection.getCardCount(card.id);
+        
+        const cardEl = document.createElement('div');
+        cardEl.className = 'recent-card-item';
+        cardEl.innerHTML = `
+            <div class="recent-card-thumbnail ${card.rarity}">
+                ${card.image ? `<img src="${card.image}" alt="${card.name}" loading="lazy" decoding="async">` : `<div class="placeholder-icon">${card.icon || '🏇'}</div>`}
+            </div>
+            <div class="recent-card-info">
+                <h4>${card.name}</h4>
+                <p class="card-rarity-badge">${getRarityLabel(card.rarity)}</p>
+                <span class="scan-time">${formatDate(scan.scannedAt)}</span>
+            </div>
+            <div class="card-count-badge">×${count}</div>
         `;
         
-        container.appendChild(scanEl);
+        cardEl.addEventListener('click', () => {
+            window.location.href = `card-detail.html?id=${card.id}`;
+        });
+        
+        container.appendChild(cardEl);
     });
 }
 
 function setupScanModal() {
     const modal = document.getElementById('scan-modal');
-    const viewCardBtn = document.getElementById('view-card');
-    const continueBtn = document.getElementById('continue-scan');
+    const closeBtn = document.getElementById('close-scan');
+    const overlay = document.getElementById('modal-overlay');
     
-    if (viewCardBtn) {
-        viewCardBtn.addEventListener('click', () => {
-            const cardId = viewCardBtn.dataset.cardId;
-            window.location.href = `card-detail.html?id=${cardId}`;
-        });
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeScanModal);
     }
     
-    if (continueBtn) {
-        continueBtn.addEventListener('click', () => {
-            Modal.close('scan-modal');
-        });
-    }
-    
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                Modal.close('scan-modal');
-            }
-        });
+    if (overlay) {
+        overlay.addEventListener('click', closeScanModal);
     }
 }
 
 function showScanSuccess(card) {
     const modal = document.getElementById('scan-modal');
-    const preview = document.getElementById('scanned-card-preview');
-    const viewCardBtn = document.getElementById('view-card');
+    const resultContainer = document.getElementById('scan-result');
     
-    if (!modal || !preview) return;
+    if (!modal || !resultContainer) return;
     
     const count = UserCollection.getCardCount(card.id);
-    const isDuplicate = count > 1;
+    const isNew = count === 1;
     
-    preview.innerHTML = `
-        <div class="trading-card ${card.rarity}" style="width: 240px; height: 340px; margin: 0 auto;">
-            <div class="card-header">
-                <span class="card-category">${getCategoryLabel(card.category)}</span>
-                <span class="card-rarity">${getRarityStars(card.rarity)}</span>
+    resultContainer.innerHTML = `
+        <div class="scan-success-animation">
+            <div class="success-icon ${isNew ? 'new' : 'duplicate'}">
+                ${isNew ? '⭐' : '✓'}
             </div>
-            <div class="card-image-container">
-                <div class="card-image">
-                    ${card.image ? `<img src="${card.image}" alt="${card.name}" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg);" onerror="this.outerHTML='<div class=\\"placeholder-image\\">${card.icon || '🏇'}</div>'">` : `<div class="placeholder-image">${card.icon || '🏇'}</div>`}
+            <h2>${isNew ? 'Nouvelle carte !' : 'Carte ajoutée !'}</h2>
+            <p class="success-subtitle">${isNew ? 'Première obtention' : `Vous en avez maintenant ${count}`}</p>
+        </div>
+        
+        <div class="scanned-card">
+            <div class="trading-card ${card.rarity}">
+                <div class="card-header">
+                    <span class="card-category">${getCategoryLabel(card.category)}</span>
+                    <span class="card-rarity">${getRarityStars(card.rarity)}</span>
+                </div>
+                <div class="card-image-container">
+                    <div class="card-image">
+                        ${card.image ? `<img src="${card.image}" alt="${card.name}" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg);" onerror="this.outerHTML='<div class=\"placeholder-image\">${card.icon || '🏇'}</div>'">` : `<div class="placeholder-image">${card.icon || '🏇'}</div>`}
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h2 class="card-name">${card.name}</h2>
+                    <p class="card-subtitle">${getRarityLabel(card.rarity)}</p>
+                </div>
+                <div class="card-footer">
+                    <span class="card-number">#${card.id}</span>
+                    <span class="card-edition">×${count}</span>
                 </div>
             </div>
-            <div class="card-info">
-                <h2 class="card-name">${card.name}</h2>
-                <p class="card-subtitle">${getRarityLabel(card.rarity)}</p>
-            </div>
-            <div class="card-footer">
-                <span class="card-number">#${card.id}</span>
-                <span class="card-edition">×${count} ${isDuplicate ? '(Double)' : ''}</span>
-            </div>
+        </div>
+        
+        <div class="scan-actions">
+            <button class="action-btn primary" onclick="viewCardDetails('${card.id}')">
+                Voir les détails
+            </button>
+            <button class="action-btn secondary" onclick="closeScanModal()">
+                Continuer à scanner
+            </button>
         </div>
     `;
     
-    if (viewCardBtn) {
-        viewCardBtn.dataset.cardId = card.id;
-    }
+    modal.classList.add('active');
     
-    Modal.open('scan-modal');
-    
-    if (isDuplicate) {
-        showToast('Double ! +10 crédits', 'success');
-        Credits.add(10);
+    // Play success sound or vibration
+    if (navigator.vibrate) {
+        navigator.vibrate(isNew ? [100, 50, 100] : 100);
     }
 }
 
-function getRandomCard() {
-    const allCards = getAllCards();
-    return allCards[Math.floor(Math.random() * allCards.length)];
+function closeScanModal() {
+    const modal = document.getElementById('scan-modal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
 }
 
-// Add animation to scan frame corners
-const corners = document.querySelectorAll('.corner');
-corners.forEach((corner, index) => {
-    corner.style.animationDelay = `${index * 0.1}s`;
+function viewCardDetails(cardId) {
+    window.location.href = `card-detail.html?id=${cardId}`;
+}
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    if (html5QrcodeScanner) {
+        html5QrcodeScanner.stop().catch(err => console.error(err));
+    }
 });
