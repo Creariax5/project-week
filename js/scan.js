@@ -193,8 +193,8 @@ function onScanFailure(error) {
 }
 
 function extractCardIdFromUrl(url) {
-    // Extract card ID from URL like: https://salon-cheval-2026.fr/card/DISC-001
-    const match = url.match(/\/card\/([A-Z]+-\d+)/);
+    // Extract card ID from URL like: https://creariax5.github.io/project-week/card-detail.html?id=DISC-001
+    const match = url.match(/[?&]id=([A-Z]+-\d+)/);
     return match ? match[1] : null;
 }
 
