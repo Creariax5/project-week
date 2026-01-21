@@ -1,7 +1,7 @@
 {
   "cards": [
     {
-      "id": "DISC-001",
+      "id": "0001",
       "name": "Saut d'obstacles - Bronze",
       "category": "disciplines",
       "discipline": "Saut d'obstacles",
@@ -9,11 +9,11 @@
       "color": "#3B82F6",
       "total": 15000,
       "image": "images/cards/cheval-qui-saute.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=DISC-001",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0001",
       "description": "Épreuve de saut d'obstacles niveau Bronze"
     },
     {
-      "id": "DISC-002",
+      "id": "0002",
       "name": "Saut d'obstacles - Argent",
       "category": "disciplines",
       "discipline": "Saut d'obstacles",
@@ -21,11 +21,11 @@
       "color": "#3B82F6",
       "total": 12000,
       "image": "images/cards/mec-qui-saute.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=DISC-002",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0002",
       "description": "Épreuve de saut d'obstacles niveau Argent"
     },
     {
-      "id": "DISC-003",
+      "id": "0003",
       "name": "Saut d'obstacles - Or",
       "category": "disciplines",
       "discipline": "Saut d'obstacles",
@@ -33,11 +33,11 @@
       "color": "#3B82F6",
       "total": 8000,
       "image": "images/cards/julien-epaillard.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=DISC-003",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0003",
       "description": "Épreuve de saut d'obstacles niveau Or"
     },
     {
-      "id": "DISC-011",
+      "id": "0004",
       "name": "Course de Plat",
       "category": "disciplines",
       "discipline": "Courses",
@@ -45,11 +45,11 @@
       "color": "#F97316",
       "total": 15000,
       "image": "images/cards/frankie-dettori.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=DISC-011",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0004",
       "description": "Course hippique sur terrain plat"
     },
     {
-      "id": "DISC-012",
+      "id": "0005",
       "name": "Course d'Obstacle",
       "category": "disciplines",
       "discipline": "Courses",
@@ -57,11 +57,11 @@
       "color": "#F97316",
       "total": 12000,
       "image": "images/cards/cheval-la.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=DISC-012",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0005",
       "description": "Course d'obstacles - Steeple-chase"
     },
     {
-      "id": "DISC-021",
+      "id": "0006",
       "name": "Dressage Classique",
       "category": "disciplines",
       "discipline": "Dressage",
@@ -69,11 +69,11 @@
       "color": "#10B981",
       "total": 15000,
       "image": "images/cards/coté-1.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=DISC-021",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0006",
       "description": "Épreuve de dressage classique"
     },
     {
-      "id": "DISC-022",
+      "id": "0007",
       "name": "Dressage Artistique",
       "category": "disciplines",
       "discipline": "Dressage",
@@ -81,11 +81,11 @@
       "color": "#10B981",
       "total": 8000,
       "image": "images/cards/penelope.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=DISC-022",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0007",
       "description": "Dressage artistique et chorégraphie équestre"
     },
     {
-      "id": "DISC-051",
+      "id": "0008",
       "name": "Western - Reining",
       "category": "disciplines",
       "discipline": "Western",
@@ -93,11 +93,11 @@
       "color": "#8B5CF6",
       "total": 5000,
       "image": "images/cards/cheval-qui-saute.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=DISC-051",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0008",
       "description": "Discipline western - Reining"
     },
     {
-      "id": "DISC-052",
+      "id": "0009",
       "name": "Western - Barrel Racing",
       "category": "disciplines",
       "discipline": "Western",
@@ -105,11 +105,11 @@
       "color": "#8B5CF6",
       "total": 3000,
       "image": "images/cards/mec-qui-saute.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=DISC-052",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0009",
       "description": "Course de barils - Barrel Racing"
     },
     {
-      "id": "CAV-001",
+      "id": "0010",
       "name": "Pénélope Leprevost",
       "category": "cavaliers",
       "type": "actif",
@@ -118,11 +118,11 @@
       "nationality": "🇫🇷",
       "total": 12000,
       "image": "images/cards/penelope-leprevost.png",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CAV-001",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0010",
       "description": "Cavalière française de saut d'obstacles, multiple médaillée olympique"
     },
     {
-      "id": "CAV-002",
+      "id": "0011",
       "name": "Pauline Basquin",
       "category": "cavaliers",
       "type": "actif",
@@ -131,11 +131,11 @@
       "nationality": "🇫🇷",
       "total": 12000,
       "image": "images/cards/penelope.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CAV-002",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0011",
       "description": "Jeune talent du saut d'obstacles français"
     },
     {
-      "id": "CAV-003",
+      "id": "0012",
       "name": "Gaspard Maksud",
       "category": "cavaliers",
       "type": "actif",
@@ -144,11 +144,11 @@
       "nationality": "🇫🇷",
       "total": 10000,
       "image": "images/cards/mec-qui-saute.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CAV-003",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0012",
       "description": "Cavalier professionnel de saut d'obstacles"
     },
     {
-      "id": "CAV-011",
+      "id": "0013",
       "name": "Kevin Staut",
       "category": "cavaliers",
       "type": "actif",
@@ -157,11 +157,11 @@
       "nationality": "🇫🇷",
       "total": 7000,
       "image": "images/cards/julien-epaillard.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CAV-011",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0013",
       "description": "Champion de saut d'obstacles, médaillé olympique"
     },
     {
-      "id": "CAV-012",
+      "id": "0014",
       "name": "Simon Delestre",
       "category": "cavaliers",
       "type": "actif",
@@ -170,11 +170,11 @@
       "nationality": "🇫🇷",
       "total": 7000,
       "image": "images/cards/mec-qui-saute.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CAV-012",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0014",
       "description": "Grand cavalier français, multiple vainqueur de Grand Prix"
     },
     {
-      "id": "CAV-013",
+      "id": "0015",
       "name": "Julien Épaillard",
       "category": "cavaliers",
       "type": "actif",
@@ -183,11 +183,11 @@
       "nationality": "🇫🇷",
       "total": 6000,
       "image": "images/cards/julien-epaillard.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CAV-013",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0015",
       "description": "Champion olympique et vainqueur de nombreux Grand Prix"
     },
     {
-      "id": "CAV-021",
+      "id": "0016",
       "name": "Martin Fuchs",
       "category": "cavaliers",
       "type": "actif",
@@ -196,11 +196,11 @@
       "nationality": "🇨🇭",
       "total": 3000,
       "image": "images/cards/cheval-qui-saute.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CAV-021",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0016",
       "description": "Star suisse du saut d'obstacles"
     },
     {
-      "id": "CAV-022",
+      "id": "0017",
       "name": "Isabell Werth",
       "category": "cavaliers",
       "type": "actif",
@@ -209,11 +209,11 @@
       "nationality": "🇩🇪",
       "total": 3000,
       "image": "images/cards/coté-1.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CAV-022",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0017",
       "description": "Légende vivante du dressage, multiple championne olympique"
     },
     {
-      "id": "LEG-001",
+      "id": "0018",
       "name": "Pierre Durand",
       "category": "cavaliers",
       "type": "legende",
@@ -222,11 +222,11 @@
       "nationality": "🇫🇷",
       "total": 500,
       "image": "images/cards/frankie-dettori.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=LEG-001",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0018",
       "description": "Champion olympique 1988 avec Jappeloup - Légende française"
     },
     {
-      "id": "LEG-002",
+      "id": "0019",
       "name": "Michel Robert",
       "category": "cavaliers",
       "type": "legende",
@@ -235,11 +235,11 @@
       "nationality": "🇫🇷",
       "total": 500,
       "image": "images/cards/mec-qui-saute.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=LEG-002",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0019",
       "description": "Figure emblématique du saut d'obstacles français"
     },
     {
-      "id": "LEG-003",
+      "id": "0020",
       "name": "John Whitaker",
       "category": "cavaliers",
       "type": "legende",
@@ -248,180 +248,8 @@
       "nationality": "🇬🇧",
       "total": 400,
       "image": "images/cards/julien-epaillard.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=LEG-003",
+      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=0020",
       "description": "Légende britannique du saut d'obstacles avec Milton"
-    },
-    {
-      "id": "CHV-001",
-      "name": "Big Star",
-      "category": "chevaux",
-      "type": "recent",
-      "rarity": "rare",
-      "discipline": "Saut d'obstacles",
-      "cavalier": "Nick Skelton",
-      "total": 7000,
-      "image": "images/cards/cheval-la.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CHV-001",
-      "description": "Cheval champion olympique 2016"
-    },
-    {
-      "id": "CHV-002",
-      "name": "Explosion W",
-      "category": "chevaux",
-      "type": "recent",
-      "rarity": "rare",
-      "discipline": "Saut d'obstacles",
-      "cavalier": "Peder Fredricson",
-      "total": 7000,
-      "image": "images/cards/cheval-qui-saute.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CHV-002",
-      "description": "Champion suédois de saut d'obstacles"
-    },
-    {
-      "id": "CHV-003",
-      "name": "Dalera",
-      "category": "chevaux",
-      "type": "recent",
-      "rarity": "rare",
-      "discipline": "Dressage",
-      "cavalier": "Jessica von Bredow-Werndl",
-      "total": 6000,
-      "image": "images/cards/coté-1.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CHV-003",
-      "description": "Jument de dressage médaillée olympique"
-    },
-    {
-      "id": "CHV-L01",
-      "name": "Jappeloup",
-      "category": "chevaux",
-      "type": "legendaire",
-      "rarity": "legendary",
-      "discipline": "Saut d'obstacles",
-      "cavalier": "Pierre Durand",
-      "total": 500,
-      "years": "1980-1991",
-      "image": "images/cards/cheval-qui-saute.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CHV-L01",
-      "description": "Légende olympique française - Champion 1988"
-    },
-    {
-      "id": "CHV-L02",
-      "name": "Totilas",
-      "category": "chevaux",
-      "type": "legendaire",
-      "rarity": "mythic",
-      "discipline": "Dressage",
-      "cavalier": "Edward Gal",
-      "total": 200,
-      "years": "2000-2020",
-      "image": "images/cards/cheval-la.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CHV-L02",
-      "description": "Phénomène du dressage mondial"
-    },
-    {
-      "id": "CHV-L03",
-      "name": "Baloubet du Rouet",
-      "category": "chevaux",
-      "type": "legendaire",
-      "rarity": "legendary",
-      "discipline": "Saut d'obstacles",
-      "cavalier": "Rodrigo Pessoa",
-      "total": 400,
-      "image": "images/cards/cheval-qui-saute.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CHV-L03",
-      "description": "Triple vainqueur de la Coupe du Monde"
-    },
-    {
-      "id": "CHV-L04",
-      "name": "Milton",
-      "category": "chevaux",
-      "type": "legendaire",
-      "rarity": "legendary",
-      "discipline": "Saut d'obstacles",
-      "cavalier": "John Whitaker",
-      "total": 350,
-      "image": "images/cards/cheval-la.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=CHV-L04",
-      "description": "Légendaire cheval gris de John Whitaker"
-    },
-    {
-      "id": "DUO-001",
-      "name": "Pierre Durand × Jappeloup",
-      "category": "duos",
-      "rarity": "mythic",
-      "discipline": "Saut d'obstacles",
-      "total": 200,
-      "image": "images/cards/julien-epaillard.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=DUO-001",
-      "description": "Duo légendaire olympique 1988 - Histoire de légende"
-    },
-    {
-      "id": "DUO-002",
-      "name": "Charlotte Dujardin × Valegro",
-      "category": "duos",
-      "rarity": "mythic",
-      "discipline": "Dressage",
-      "total": 150,
-      "image": "images/cards/penelope.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=DUO-002",
-      "description": "Duo britannique de dressage multi-médaillé"
-    },
-    {
-      "id": "DUO-003",
-      "name": "Isabell Werth × Totilas",
-      "category": "duos",
-      "rarity": "mythic",
-      "discipline": "Dressage",
-      "total": 150,
-      "image": "images/cards/coté-1.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=DUO-003",
-      "description": "Duo légendaire allemand de dressage"
-    },
-    {
-      "id": "MOM-001",
-      "name": "Finale Olympique 1988",
-      "category": "moments",
-      "rarity": "ultra-rare",
-      "discipline": "Saut d'obstacles",
-      "total": 1000,
-      "temporary": true,
-      "image": "images/cards/mec-qui-saute.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=MOM-001",
-      "description": "Le parcours sans faute historique de Jappeloup"
-    },
-    {
-      "id": "MOM-002",
-      "name": "Record du Monde Dressage",
-      "category": "moments",
-      "rarity": "ultra-rare",
-      "discipline": "Dressage",
-      "total": 1000,
-      "temporary": true,
-      "image": "images/cards/coté-1.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=MOM-002",
-      "description": "Performance record en dressage"
-    },
-    {
-      "id": "EVT-001",
-      "name": "Salon du Cheval 2025",
-      "category": "event",
-      "rarity": "rare",
-      "total": 5000,
-      "eventOnly": true,
-      "image": "images/cards/cheval-la.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=EVT-001",
-      "description": "Carte exclusive Salon du Cheval 2025"
-    },
-    {
-      "id": "EVT-002",
-      "name": "Spectacle Équestre 2026",
-      "category": "event",
-      "rarity": "ultra-rare",
-      "total": 2000,
-      "eventOnly": true,
-      "image": "images/cards/frankie-dettori.jpg",
-      "qrUrl": "https://creariax5.github.io/project-week/card-detail.html?id=EVT-002",
-      "description": "Carte exclusive Spectacle Équestre 2026"
     }
   ]
 }
