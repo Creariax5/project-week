@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Design System pour Salon du Cheval de Paris & EQUIX">
+    <title>Design System - Salon du Cheval & EQUIX</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/design-system.css">
+</head>
+<body>
+    <div class="ds-container">
+        <!-- SIDEBAR -->
+        <aside class="ds-sidebar">
+            <div class="ds-sidebar-header">
+                <h1 class="ds-logo">Design System</h1>
+                <p class="ds-tagline">EQUIX & Salon du Cheval</p>
+            </div>
+            
+            <nav class="ds-nav">
+                <a href="#colors" class="ds-nav-link active">Couleurs</a>
+                <a href="#typography" class="ds-nav-link">Typographie</a>
+                <a href="#buttons" class="ds-nav-link">Boutons</a>
+                <a href="#cards" class="ds-nav-link">Cartes</a>
+                <a href="#forms" class="ds-nav-link">Formulaires</a>
+                <a href="#navigation" class="ds-nav-link">Navigation</a>
+                <a href="#modals" class="ds-nav-link">Modales</a>
+                <a href="#alerts" class="ds-nav-link">Alertes</a>
+                <a href="#badges" class="ds-nav-link">Badges</a>
+                <a href="#icons" class="ds-nav-link">Icônes</a>
+                <a href="#spacing" class="ds-nav-link">Espacement</a>
+                <a href="#shadows" class="ds-nav-link">Ombres</a>
+                <a href="#grid" class="ds-nav-link">Grilles</a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="ds-main">
+            <!-- Header -->
+            <header class="ds-header">
+                <h1>Design System</h1>
+                <p>Système de design pour Salon du Cheval de Paris & EQUIX</p>
+            </header>
+
+            <!-- COULEURS -->
+            <section id="colors" class="ds-section">
+                <h2><i class="fas fa-palette"></i> Couleurs</h2>
+                <p class="ds-desc">Palette de couleurs cohérente pour l'ensemble de l'application.</p>
+                
+                <div class="color-grid">
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #42bccf;"></div>
+                        <h3>Primaire</h3>
+                        <code>#42bccf</code>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #212121;"></div>
+                        <h3>Secondaire</h3>
+                        <code>#212121</code>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #ffffff; border: 2px solid #e0e0e0;"></div>
+                        <h3>Blanc</h3>
+                        <code>#ffffff</code>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #f5f5f5;"></div>
+                        <h3>Gris Clair</h3>
+                        <code>#f5f5f5</code>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #4caf50;"></div>
+                        <h3>Succès</h3>
+                        <code>#4caf50</code>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #ff9800;"></div>
+                        <h3>Alerte</h3>
+                        <code>#ff9800</code>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #f44336;"></div>
+                        <h3>Erreur</h3>
+                        <code>#f44336</code>
+                    </div>
+                    <div class="color-card">
+                        <div class="color-swatch" style="background: #2196f3;"></div>
+                        <h3>Info</h3>
+                        <code>#2196f3</code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TYPOGRAPHIE -->
+            <section id="typography" class="ds-section">
+                <h2><i class="fas fa-font"></i> Typographie</h2>
+                <p class="ds-desc">Hiérarchie typographique et styles de texte.</p>
+                
+                <div class="typo-grid">
+                    <div class="typo-sample">
+                        <h1>Heading 1 - Fira Sans Ultra</h1>
+                        <p class="typo-specs">48px • 900 • line-height: 1.2</p>
+                    </div>
+                    <div class="typo-sample">
+                        <h2>Heading 2 - Fira Sans Ultra</h2>
+                        <p class="typo-specs">32px • 900 • line-height: 1.2</p>
+                    </div>
+                    <div class="typo-sample">
+                        <h3>Heading 3 - Fira Sans Medium</h3>
+                        <p class="typo-specs">24px • 500 • line-height: 1.3</p>
+                    </div>
+                    <div class="typo-sample">
+                        <p>Body text - Fira Sans Regular</p>
+                        <p class="typo-specs">16px • 400 • line-height: 1.5</p>
+                    </div>
+                    <div class="typo-sample">
+                        <p class="small">Small text - Fira Sans Regular</p>
+                        <p class="typo-specs">14px • 400 • line-height: 1.4</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BOUTONS -->
+            <section id="buttons" class="ds-section">
+                <h2><i class="fas fa-hand-pointer"></i> Boutons</h2>
+                <p class="ds-desc">Différents styles de boutons pour diverses actions.</p>
+                
+                <div class="component-group">
+                    <h3>Boutons Primaires</h3>
+                    <div class="button-row">
+                        <button class="btn btn-primary">Primaire</button>
+                        <button class="btn btn-primary" disabled>Désactivé</button>
+                        <button class="btn btn-primary btn-sm">Petit</button>
+                        <button class="btn btn-primary btn-lg">Grand</button>
+                    </div>
+                </div>
+
+                <div class="component-group">
+                    <h3>Boutons Secondaires</h3>
+                    <div class="button-row">
+                        <button class="btn btn-secondary">Secondaire</button>
+                        <button class="btn btn-secondary" disabled>Désactivé</button>
+                        <button class="btn btn-secondary btn-sm">Petit</button>
+                        <button class="btn btn-secondary btn-lg">Grand</button>
+                    </div>
+                </div>
+
+                <div class="component-group">
+                    <h3>Boutons avec Icônes</h3>
+                    <div class="button-row">
+                        <button class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter</button>
+                        <button class="btn btn-secondary"><i class="fas fa-search"></i> Rechercher</button>
+                        <button class="btn btn-danger"><i class="fas fa-trash"></i> Supprimer</button>
+                        <button class="btn btn-primary"><i class="fas fa-save"></i> Enregistrer</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CARTES -->
+            <section id="cards" class="ds-section">
+                <h2><i class="fas fa-id-card"></i> Cartes</h2>
+                <p class="ds-desc">Composants de cartes pour afficher du contenu groupé.</p>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-image">
+                            <div style="background: linear-gradient(135deg, #42bccf, #2196f3); height: 200px; display: flex; align-items: center; justify-content: center; color: white; font-size: 64px;">
+                                <i class="fas fa-horse"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h3>Carte Standard</h3>
+                            <p>Description de la carte avec du contenu pertinent.</p>
+                            <button class="btn btn-primary btn-sm">Action</button>
+                        </div>
+                    </div>
+
+                    <div class="card card-hover">
+                        <div class="card-body">
+                            <div style="text-align: center; font-size: 48px; color: #42bccf; margin-bottom: 16px;">
+                                <i class="fas fa-ticket"></i>
+                            </div>
+                            <h3>Carte Événement</h3>
+                            <p>Événement spécial avec dates et informations.</p>
+                            <span class="badge badge-primary">À venir</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Carte Simple</h3>
+                            <p>Version simplifiée d'une carte.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FORMULAIRES -->
+            <section id="forms" class="ds-section">
+                <h2><i class="fas fa-edit"></i> Formulaires</h2>
+                <p class="ds-desc">Éléments de formulaire standardisés.</p>
+                
+                <div class="form-demo">
+                    <div class="form-group">
+                        <label class="form-label">Champ Texte</label>
+                        <input type="text" class="form-input" placeholder="Entrez du texte...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="exemple@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Textarea</label>
+                        <textarea class="form-input" rows="4" placeholder="Votre message..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Sélecteur</label>
+                        <select class="form-input">
+                            <option>Choisissez une option</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-checkbox">
+                            <input type="checkbox">
+                            <span>J'accepte les conditions</span>
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-primary">Envoyer</button>
+                        <button class="btn btn-secondary">Annuler</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NAVIGATION -->
+            <section id="navigation" class="ds-section">
+                <h2><i class="fas fa-bars"></i> Navigation</h2>
+                <p class="ds-desc">Composants de navigation pour l'application.</p>
+                
+                <div class="component-group">
+                    <h3>Barre de Navigation</h3>
+                    <nav class="navbar">
+                        <div class="navbar-brand">EQUIX</div>
+                        <div class="navbar-menu">
+                            <a href="#" class="navbar-link">Accueil</a>
+                            <a href="#" class="navbar-link active">Collections</a>
+                            <a href="#" class="navbar-link">Boutique</a>
+                            <a href="#" class="navbar-link">Événements</a>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="component-group">
+                    <h3>Navigation Inférieure</h3>
+                    <nav class="bottom-nav">
+                        <a href="#" class="bottom-nav-link active">
+                            <i class="fas fa-home"></i>
+                            <span>Accueil</span>
+                        </a>
+                        <a href="#" class="bottom-nav-link">
+                            <i class="fas fa-calendar"></i>
+                            <span>Événements</span>
+                        </a>
+                        <a href="#" class="bottom-nav-link">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Boutique</span>
+                        </a>
+                        <a href="#" class="bottom-nav-link">
+                            <i class="fas fa-comments"></i>
+                            <span>Chat</span>
+                        </a>
+                    </nav>
+                </div>
+            </section>
+
+            <!-- MODALES -->
+            <section id="modals" class="ds-section">
+                <h2><i class="fas fa-window-restore"></i> Modales</h2>
+                <p class="ds-desc">Boîtes de dialogue modales.</p>
+                
+                <div class="modal-preview">
+                    <div class="modal">
+                        <div class="modal-header">
+                            <h3>Titre de la Modale</h3>
+                            <button class="modal-close"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Contenu de la modale avec des informations importantes.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary">Annuler</button>
+                            <button class="btn btn-primary">Confirmer</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ALERTES -->
+            <section id="alerts" class="ds-section">
+                <h2><i class="fas fa-bell"></i> Alertes</h2>
+                <p class="ds-desc">Messages d'alerte et de notification.</p>
+                
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>Succès!</strong> L'opération s'est déroulée avec succès.</span>
+                </div>
+
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span><strong>Information.</strong> Ceci est un message d'information.</span>
+                </div>
+
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span><strong>Attention!</strong> Veuillez vérifier vos données.</span>
+                </div>
+
+                <div class="alert alert-error">
+                    <i class="fas fa-times-circle"></i>
+                    <span><strong>Erreur!</strong> Une erreur s'est produite.</span>
+                </div>
+            </section>
+
+            <!-- BADGES -->
+            <section id="badges" class="ds-section">
+                <h2><i class="fas fa-tag"></i> Badges</h2>
+                <p class="ds-desc">Badges pour les statuts et labels.</p>
+                
+                <div class="badge-grid">
+                    <span class="badge badge-primary">Primaire</span>
+                    <span class="badge badge-secondary">Secondaire</span>
+                    <span class="badge badge-success">Succès</span>
+                    <span class="badge badge-warning">Alerte</span>
+                    <span class="badge badge-error">Erreur</span>
+                    <span class="badge badge-info">Info</span>
+                </div>
+            </section>
+
+            <!-- ICÔNES -->
+            <section id="icons" class="ds-section">
+                <h2><i class="fas fa-icons"></i> Icônes</h2>
+                <p class="ds-desc">Ensemble d'icônes utilisées dans l'application avec Font Awesome.</p>
+                
+                <div class="icon-grid">
+                    <div class="icon-item"><i class="fas fa-home"></i><span>Accueil</span></div>
+                    <div class="icon-item"><i class="fas fa-horse"></i><span>Chevaux</span></div>
+                    <div class="icon-item"><i class="fas fa-ticket"></i><span>Événements</span></div>
+                    <div class="icon-item"><i class="fas fa-shopping-bag"></i><span>Boutique</span></div>
+                    <div class="icon-item"><i class="fas fa-comments"></i><span>Chat</span></div>
+                    <div class="icon-item"><i class="fas fa-search"></i><span>Recherche</span></div>
+                    <div class="icon-item"><i class="fas fa-heart"></i><span>Favoris</span></div>
+                    <div class="icon-item"><i class="fas fa-bell"></i><span>Notifications</span></div>
+                    <div class="icon-item"><i class="fas fa-cog"></i><span>Paramètres</span></div>
+                    <div class="icon-item"><i class="fas fa-user"></i><span>Profil</span></div>
+                    <div class="icon-item"><i class="fas fa-chart-bar"></i><span>Stats</span></div>
+                    <div class="icon-item"><i class="fas fa-trash"></i><span>Supprimer</span></div>
+                    <div class="icon-item"><i class="fas fa-plus"></i><span>Ajouter</span></div>
+                    <div class="icon-item"><i class="fas fa-edit"></i><span>Modifier</span></div>
+                    <div class="icon-item"><i class="fas fa-share"></i><span>Partager</span></div>
+                    <div class="icon-item"><i class="fas fa-download"></i><span>Télécharger</span></div>
+                </div>
+            </section>
+
+            <!-- ESPACEMENT -->
+            <section id="spacing" class="ds-section">
+                <h2><i class="fas fa-ruler"></i> Espacement</h2>
+                <p class="ds-desc">Échelle d'espacement pour la cohérence.</p>
+                
+                <div class="spacing-grid">
+                    <div class="spacing-item">
+                        <div class="spacing-box" style="width: 4px; height: 4px;"></div>
+                        <strong>xs</strong>
+                        <code>4px</code>
+                    </div>
+                    <div class="spacing-item">
+                        <div class="spacing-box" style="width: 8px; height: 8px;"></div>
+                        <strong>sm</strong>
+                        <code>8px</code>
+                    </div>
+                    <div class="spacing-item">
+                        <div class="spacing-box" style="width: 16px; height: 16px;"></div>
+                        <strong>md</strong>
+                        <code>16px</code>
+                    </div>
+                    <div class="spacing-item">
+                        <div class="spacing-box" style="width: 24px; height: 24px;"></div>
+                        <strong>lg</strong>
+                        <code>24px</code>
+                    </div>
+                    <div class="spacing-item">
+                        <div class="spacing-box" style="width: 32px; height: 32px;"></div>
+                        <strong>xl</strong>
+                        <code>32px</code>
+                    </div>
+                    <div class="spacing-item">
+                        <div class="spacing-box" style="width: 48px; height: 48px;"></div>
+                        <strong>2xl</strong>
+                        <code>48px</code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OMBRES -->
+            <section id="shadows" class="ds-section">
+                <h2><i class="fas fa-clone"></i> Ombres</h2>
+                <p class="ds-desc">Système d'ombres pour la profondeur.</p>
+                
+                <div class="shadow-grid">
+                    <div class="shadow-item shadow-sm"><p>Petite</p></div>
+                    <div class="shadow-item shadow-md"><p>Moyenne</p></div>
+                    <div class="shadow-item shadow-lg"><p>Grande</p></div>
+                    <div class="shadow-item shadow-xl"><p>Très grande</p></div>
+                </div>
+            </section>
+
+            <!-- GRILLES -->
+            <section id="grid" class="ds-section">
+                <h2><i class="fas fa-th"></i> Systèmes de Grille</h2>
+                <p class="ds-desc">Grilles pour les mises en page cohérentes.</p>
+                
+                <div class="component-group">
+                    <h3>Grille 2 Colonnes</h3>
+                    <div class="demo-grid grid-2">
+                        <div class="demo-grid-item">Colonne 1</div>
+                        <div class="demo-grid-item">Colonne 2</div>
+                    </div>
+                </div>
+
+                <div class="component-group">
+                    <h3>Grille 3 Colonnes</h3>
+                    <div class="demo-grid grid-3">
+                        <div class="demo-grid-item">Colonne 1</div>
+                        <div class="demo-grid-item">Colonne 2</div>
+                        <div class="demo-grid-item">Colonne 3</div>
+                    </div>
+                </div>
+
+                <div class="component-group">
+                    <h3>Grille 4 Colonnes</h3>
+                    <div class="demo-grid grid-4">
+                        <div class="demo-grid-item">Col 1</div>
+                        <div class="demo-grid-item">Col 2</div>
+                        <div class="demo-grid-item">Col 3</div>
+                        <div class="demo-grid-item">Col 4</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Navigation smooth scroll
+        document.querySelectorAll('.ds-nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active state
+                document.querySelectorAll('.ds-nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Scroll to section
+                const targetId = this.getAttribute('href').slice(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer pour auto-activer les liens
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.ds-nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.ds-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
