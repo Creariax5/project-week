@@ -27,10 +27,24 @@ var CARDS_DATABASE = {
         { id: "0019", name: "Michel Robert", category: "cavaliers", type: "legende", rarity: "legendary", discipline: "Saut d'obstacles", nationality: "🇫🇷", total: 500, image: "images/cards/mec-qui-saute.jpg", description: "Figure emblématique du saut d'obstacles français" },
         { id: "0020", name: "John Whitaker", category: "cavaliers", type: "legende", rarity: "legendary", discipline: "Saut d'obstacles", nationality: "🇬🇧", total: 400, image: "images/cards/julien-epaillard.jpg", description: "Légende britannique du saut d'obstacles avec Milton" }
     ],
-    chevaux: [],
-    duos: [],
-    moments: [],
-    event: []
+    chevaux: [
+        { id: "0021", name: "Big Star", category: "chevaux", type: "recent", rarity: "rare", discipline: "Saut d'obstacles", cavalier: "Nick Skelton", total: 7000, image: "images/cards/cheval-la.jpg", description: "Cheval champion olympique 2016" },
+        { id: "0022", name: "Explosion W", category: "chevaux", type: "recent", rarity: "rare", discipline: "Saut d'obstacles", cavalier: "Peder Fredricson", total: 7000, image: "images/cards/cheval-qui-saute.jpg", description: "Champion suédois de saut d'obstacles" },
+        { id: "0023", name: "Dalera", category: "chevaux", type: "recent", rarity: "rare", discipline: "Dressage", cavalier: "Jessica von Bredow-Werndl", total: 6000, image: "images/cards/coté-1.jpg", description: "Jument de dressage médaillée olympique" },
+        { id: "0024", name: "Jappeloup", category: "chevaux", type: "legendaire", rarity: "legendary", discipline: "Saut d'obstacles", cavalier: "Pierre Durand", total: 500, years: "1980-1991", image: "images/cards/cheval-qui-saute.jpg", description: "Légende olympique française - Champion 1988" },
+        { id: "0025", name: "Totilas", category: "chevaux", type: "legendaire", rarity: "mythic", discipline: "Dressage", cavalier: "Edward Gal", total: 200, years: "2000-2020", image: "images/cards/cheval-la.jpg", description: "Phénomène du dressage mondial" },
+        { id: "0026", name: "Milton", category: "chevaux", type: "legendaire", rarity: "legendary", discipline: "Saut d'obstacles", cavalier: "John Whitaker", total: 350, image: "images/cards/cheval-la.jpg", description: "Légendaire cheval gris de John Whitaker" }
+    ],
+    duos: [
+        { id: "0027", name: "Pierre Durand × Jappeloup", category: "duos", rarity: "mythic", discipline: "Saut d'obstacles", total: 200, image: "images/cards/julien-epaillard.jpg", description: "Duo légendaire olympique 1988 - Histoire de légende" }
+    ],
+    moments: [
+        { id: "0028", name: "Finale Olympique 1988", category: "moments", rarity: "ultra-rare", discipline: "Saut d'obstacles", total: 1000, temporary: true, image: "images/cards/mec-qui-saute.jpg", description: "Le parcours sans faute historique de Jappeloup" }
+    ],
+    event: [
+        { id: "0029", name: "Salon du Cheval 2025", category: "event", rarity: "rare", total: 5000, eventOnly: true, image: "images/cards/cheval-la.jpg", description: "Carte exclusive Salon du Cheval 2025" },
+        { id: "0030", name: "Spectacle Équestre 2026", category: "event", rarity: "ultra-rare", total: 2000, eventOnly: true, image: "images/cards/frankie-dettori.jpg", description: "Carte exclusive Spectacle Équestre 2026" }
+    ]
 };
 
 // Rarity weights for pack opening

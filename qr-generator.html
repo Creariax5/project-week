@@ -209,24 +209,51 @@
             cardEl.innerHTML = `
                 <h3>${card.name}</h3>
                 <p class="qr-card-id">${card.id} - ${getRarityLabel(card.rarity)}</p>
-                <p class="qr-card-id" style="font-family: monospace; color: #10B981;">🔐 ${secretCode}</p>
-                <div class="qr-code-container">
-                    <div id="${qrId}"></div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem;">
+                    <div style="text-align: center;">
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Code Secret</p>
+                        <div class="qr-code-container" style="padding: 0.5rem;">
+                            <div id="${qrId}"></div>
+                        </div>
+                        <p style="font-family: monospace; color: #10B981; font-size: 0.7rem; margin-top: 0.25rem;">${secretCode}</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem;">URL Carte</p>
+                        <div class="qr-code-container" style="padding: 0.5rem;">
+                            <div id="${qrId}-url"></div>
+                        </div>
+                        <p style="font-size: 0.6rem; color: var(--text-secondary); margin-top: 0.25rem;">Scanner pour voir</p>
+                    </div>
                 </div>
+                
                 <button class="download-btn" onclick="downloadQRCode('${card.id}', '${card.name}')">
-                    📥 Télécharger
+                    📥 Télécharger les 2 QR codes
                 </button>
             `;
 
-            // Generate QR code after element is added to DOM
+            // Generate QR codes after element is added to DOM
             setTimeout(() => {
+                // Petit QR code avec code secret
                 new QRCode(document.getElementById(qrId), {
                     text: secretCode,
-                    width: 128,
-                    height: 128,
+                    width: 100,
+                    height: 100,
                     colorDark: "#000000",
                     colorLight: "#ffffff",
                     correctLevel: QRCode.CorrectLevel.M
+                });
+                
+                // Grand QR code avec URL complète
+                const cardUrl = `https://creariax5.github.io/project-week/card-detail.html?id=${card.id}`;
+                new QRCode(document.getElementById(`${qrId}-url`), {
+                    text: cardUrl,
+                    width: 150,
+                    height: 150,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
                 });
             }, 0);
 
@@ -234,16 +261,31 @@
         }
 
         function downloadQRCode(cardId, cardName) {
-            const qrElement = document.getElementById(`qr-${cardId}`);
-            const canvas = qrElement.querySelector('canvas');
+            // Télécharger le QR code secret
+            const qrSecretElement = document.getElementById(`qr-${cardId}`);
+            const canvasSecret = qrSecretElement.querySelector('canvas');
             
-            if (canvas) {
-                const link = document.createElement('a');
-                link.download = `QR-${cardId}-${cardName.replace(/\s+/g, '-')}.png`;
-                link.href = canvas.toDataURL();
-                link.click();
-                showToast(`QR code téléchargé: ${cardName}`, 'success');
+            if (canvasSecret) {
+                const link1 = document.createElement('a');
+                link1.download = `QR-Secret-${cardId}-${cardName.replace(/\s+/g, '-')}.png`;
+                link1.href = canvasSecret.toDataURL();
+                link1.click();
             }
+            
+            // Télécharger le QR code URL
+            setTimeout(() => {
+                const qrUrlElement = document.getElementById(`qr-${cardId}-url`);
+                const canvasUrl = qrUrlElement.querySelector('canvas');
+                
+                if (canvasUrl) {
+                    const link2 = document.createElement('a');
+                    link2.download = `QR-URL-${cardId}-${cardName.replace(/\s+/g, '-')}.png`;
+                    link2.href = canvasUrl.toDataURL();
+                    link2.click();
+                }
+                
+                showToast(`2 QR codes téléchargés: ${cardName}`, 'success');
+            }, 200);
         }
 
         function downloadAllQRCodes() {
