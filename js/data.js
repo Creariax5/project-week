@@ -2,76 +2,61 @@
 // DATA.JS - Database of all cards
 // ===================================
 
-var CARDS_DATABASE = CARDS_DATABASE || {
-    disciplines: [
-        // Saut d'obstacles
-        { id: 'DISC-001', name: 'Saut d\'obstacles - Bronze', category: 'disciplines', discipline: 'Saut d\'obstacles', rarity: 'common', color: '#3B82F6', total: 15000, image: 'images/cards/cheval-qui-saute.jpg' },
-        { id: 'DISC-002', name: 'Saut d\'obstacles - Argent', category: 'disciplines', discipline: 'Saut d\'obstacles', rarity: 'common', color: '#3B82F6', total: 12000, image: 'images/cards/mec-qui-saute.jpg' },
-        { id: 'DISC-003', name: 'Saut d\'obstacles - Or', category: 'disciplines', discipline: 'Saut d\'obstacles', rarity: 'rare', color: '#3B82F6', total: 8000, image: 'images/cards/julien-epaillard.jpg' },
-        
-        // Courses
-        { id: 'DISC-011', name: 'Course de Plat', category: 'disciplines', discipline: 'Courses', rarity: 'common', color: '#F97316', total: 15000, image: 'images/cards/frankie-dettori.jpg' },
-        { id: 'DISC-012', name: 'Course d\'Obstacle', category: 'disciplines', discipline: 'Courses', rarity: 'common', color: '#F97316', total: 12000, image: 'images/cards/cheval-la.jpg' },
-        
-        // Dressage
-        { id: 'DISC-021', name: 'Dressage Classique', category: 'disciplines', discipline: 'Dressage', rarity: 'common', color: '#10B981', total: 15000, image: 'images/cards/coté-1.jpg' },
-        { id: 'DISC-022', name: 'Dressage Artistique', category: 'disciplines', discipline: 'Dressage', rarity: 'rare', color: '#10B981', total: 8000, image: 'images/cards/penelope.jpg' },
-        
-        // Western - Plus rare
-        { id: 'DISC-051', name: 'Western - Reining', category: 'disciplines', discipline: 'Western', rarity: 'rare', color: '#8B5CF6', total: 5000, image: 'images/cards/cheval-qui-saute.jpg' },
-        { id: 'DISC-052', name: 'Western - Barrel Racing', category: 'disciplines', discipline: 'Western', rarity: 'ultra-rare', color: '#8B5CF6', total: 3000, image: 'images/cards/mec-qui-saute.jpg' },
-    ],
-    
-    cavaliers: [
-        // Cavaliers actifs - Communs
-        { id: 'CAV-001', name: 'Pénélope Leprevost', category: 'cavaliers', type: 'actif', rarity: 'common', discipline: 'Saut d\'obstacles', nationality: '🇫🇷', total: 12000, image: 'images/cards/penelope-leprevost.png' },
-        { id: 'CAV-002', name: 'Pauline Basquin', category: 'cavaliers', type: 'actif', rarity: 'common', discipline: 'Saut d\'obstacles', nationality: '🇫🇷', total: 12000, image: 'images/cards/penelope.jpg' },
-        { id: 'CAV-003', name: 'Gaspard Maksud', category: 'cavaliers', type: 'actif', rarity: 'common', discipline: 'Saut d\'obstacles', nationality: '🇫🇷', total: 10000, image: 'images/cards/mec-qui-saute.jpg' },
-        
-        // Cavaliers actifs - Rares
-        { id: 'CAV-011', name: 'Kevin Staut', category: 'cavaliers', type: 'actif', rarity: 'rare', discipline: 'Saut d\'obstacles', nationality: '🇫🇷', total: 7000, image: 'images/cards/julien-epaillard.jpg' },
-        { id: 'CAV-012', name: 'Simon Delestre', category: 'cavaliers', type: 'actif', rarity: 'rare', discipline: 'Saut d\'obstacles', nationality: '🇫🇷', total: 7000, image: 'images/cards/mec-qui-saute.jpg' },
-        { id: 'CAV-013', name: 'Julien Épaillard', category: 'cavaliers', type: 'actif', rarity: 'rare', discipline: 'Saut d\'obstacles', nationality: '🇫🇷', total: 6000, image: 'images/cards/julien-epaillard.jpg' },
-        
-        // Cavaliers actifs - Ultra rares
-        { id: 'CAV-021', name: 'Martin Fuchs', category: 'cavaliers', type: 'actif', rarity: 'ultra-rare', discipline: 'Saut d\'obstacles', nationality: '🇨🇭', total: 3000, image: 'images/cards/cheval-qui-saute.jpg' },
-        { id: 'CAV-022', name: 'Isabell Werth', category: 'cavaliers', type: 'actif', rarity: 'ultra-rare', discipline: 'Dressage', nationality: '🇩🇪', total: 3000, image: 'images/cards/coté-1.jpg' },
-        
-        // Cavaliers légendes
-        { id: 'LEG-001', name: 'Pierre Durand', category: 'cavaliers', type: 'legende', rarity: 'legendary', discipline: 'Saut d\'obstacles', nationality: '🇫🇷', total: 500, description: 'Champion olympique 1988 avec Jappeloup', image: 'images/cards/frankie-dettori.jpg' },
-        { id: 'LEG-002', name: 'Michel Robert', category: 'cavaliers', type: 'legende', rarity: 'legendary', discipline: 'Saut d\'obstacles', nationality: '🇫🇷', total: 500, image: 'images/cards/mec-qui-saute.jpg' },
-        { id: 'LEG-003', name: 'John Whitaker', category: 'cavaliers', type: 'legende', rarity: 'legendary', discipline: 'Saut d\'obstacles', nationality: '🇬🇧', total: 400, image: 'images/cards/julien-epaillard.jpg' },
-    ],
-    
-    chevaux: [
-        // Chevaux récents
-        { id: 'CHV-001', name: 'Big Star', category: 'chevaux', type: 'recent', rarity: 'rare', discipline: 'Saut d\'obstacles', cavalier: 'Nick Skelton', total: 7000, image: 'images/cards/cheval-la.jpg' },
-        { id: 'CHV-002', name: 'Explosion W', category: 'chevaux', type: 'recent', rarity: 'rare', discipline: 'Saut d\'obstacles', cavalier: 'Peder Fredricson', total: 7000, image: 'images/cards/cheval-qui-saute.jpg' },
-        { id: 'CHV-003', name: 'Dalera', category: 'chevaux', type: 'recent', rarity: 'rare', discipline: 'Dressage', cavalier: 'Jessica von Bredow-Werndl', total: 6000, image: 'images/cards/coté-1.jpg' },
-        
-        // Chevaux légendaires
-        { id: 'CHV-L01', name: 'Jappeloup', category: 'chevaux', type: 'legendaire', rarity: 'legendary', discipline: 'Saut d\'obstacles', cavalier: 'Pierre Durand', total: 500, years: '1980-1991', description: 'Légende olympique française', image: 'images/cards/cheval-qui-saute.jpg' },
-        { id: 'CHV-L02', name: 'Totilas', category: 'chevaux', type: 'legendaire', rarity: 'mythic', discipline: 'Dressage', cavalier: 'Edward Gal', total: 200, years: '2000-2020', image: 'images/cards/cheval-la.jpg' },
-        { id: 'CHV-L03', name: 'Baloubet du Rouet', category: 'chevaux', type: 'legendaire', rarity: 'legendary', discipline: 'Saut d\'obstacles', cavalier: 'Rodrigo Pessoa', total: 400, image: 'images/cards/cheval-qui-saute.jpg' },
-        { id: 'CHV-L04', name: 'Milton', category: 'chevaux', type: 'legendaire', rarity: 'legendary', discipline: 'Saut d\'obstacles', cavalier: 'John Whitaker', total: 350, image: 'images/cards/cheval-la.jpg' },
-    ],
-    
-    duos: [
-        { id: 'DUO-001', name: 'Pierre Durand × Jappeloup', category: 'duos', rarity: 'mythic', discipline: 'Saut d\'obstacles', total: 200, description: 'Duo légendaire olympique 1988', image: 'images/cards/julien-epaillard.jpg' },
-        { id: 'DUO-002', name: 'Charlotte Dujardin × Valegro', category: 'duos', rarity: 'mythic', discipline: 'Dressage', total: 150, image: 'images/cards/penelope.jpg' },
-        { id: 'DUO-003', name: 'Isabell Werth × Totilas', category: 'duos', rarity: 'mythic', discipline: 'Dressage', total: 150, image: 'images/cards/coté-1.jpg' },
-    ],
-    
-    moments: [
-        { id: 'MOM-001', name: 'Finale Olympique 1988', category: 'moments', rarity: 'ultra-rare', discipline: 'Saut d\'obstacles', total: 1000, temporary: true, image: 'images/cards/mec-qui-saute.jpg' },
-        { id: 'MOM-002', name: 'Record du Monde Dressage', category: 'moments', rarity: 'ultra-rare', discipline: 'Dressage', total: 1000, temporary: true, image: 'images/cards/coté-1.jpg' },
-    ],
-    
-    event: [
-        { id: 'EVT-001', name: 'Salon du Cheval 2025', category: 'event', rarity: 'rare', total: 5000, eventOnly: true, image: 'images/cards/cheval-la.jpg' },
-        { id: 'EVT-002', name: 'Spectacle Équestre 2026', category: 'event', rarity: 'ultra-rare', total: 2000, eventOnly: true, image: 'images/cards/frankie-dettori.jpg' },
-    ]
+var CARDS_DATABASE = {
+    disciplines: [],
+    cavaliers: [],
+    chevaux: [],
+    duos: [],
+    moments: [],
+    event: []
 };
+var CARDS_LOADED = false;
+
+// Load cards from JSON file
+async function loadCardsDatabase() {
+    if (CARDS_LOADED) return CARDS_DATABASE;
+    
+    try {
+        const response = await fetch('cards-database.json');
+        const data = await response.json();
+        
+        // Group cards by category
+        CARDS_DATABASE = {
+            disciplines: [],
+            cavaliers: [],
+            chevaux: [],
+            duos: [],
+            moments: [],
+            event: []
+        };
+        
+        data.cards.forEach(card => {
+            const category = card.category;
+            if (CARDS_DATABASE[category]) {
+                CARDS_DATABASE[category].push(card);
+            }
+        });
+        
+        CARDS_LOADED = true;
+        console.log('Cards database loaded:', data.cards.length, 'cards');
+        return CARDS_DATABASE;
+    } catch (error) {
+        console.error('Error loading cards database:', error);
+        // Fallback to empty database
+        CARDS_DATABASE = {
+            disciplines: [],
+            cavaliers: [],
+            chevaux: [],
+            duos: [],
+            moments: [],
+            event: []
+        };
+        return CARDS_DATABASE;
+    }
+}
+
+// Initialize database on load
+loadCardsDatabase();
 
 // Rarity weights for pack opening
 var RARITY_WEIGHTS = RARITY_WEIGHTS || {
@@ -134,26 +119,22 @@ function getCardsByRarity(rarity) {
 
 // Hash function for secret codes
 function generateSecretCode(cardId) {
-    const SECRET_SALT = 'SALON_CHEVAL_2026_SECRET';
-    const input = cardId + SECRET_SALT;
-    let hash = 0;
-    
-    for (let i = 0; i < input.length; i++) {
-        const char = input.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash; // Convert to 32bit integer
-    }
-    
-    // Convert to base36 and make it 8 characters
-    const code = Math.abs(hash).toString(36).toUpperCase().padStart(8, '0');
-    return code.substring(0, 8);
+    // Utiliser directement l'ID avec un préfixe pour garantir l'unicité
+    // Format: SC + cardId padded to 6 chars = 8 chars total
+    const prefix = 'SC';
+    const paddedId = cardId.toString().padStart(6, '0');
+    return (prefix + paddedId).substring(0, 8).toUpperCase();
 }
 
 function validateSecretCode(secretCode) {
-    const allCards = getAllCards();
+    const code = secretCode.toUpperCase();
     
-    for (const card of allCards) {
-        if (generateSecretCode(card.id) === secretCode.toUpperCase()) {
+    // Format attendu: SC + 6 chiffres (ex: SC000001)
+    if (code.startsWith('SC') && code.length === 8) {
+        // Extraire l'ID en enlevant le préfixe et les zéros initiaux
+        const cardId = code.substring(2).replace(/^0+/, '') || '0';
+        const card = getCardById(cardId);
+        if (card) {
             return card.id;
         }
     }
