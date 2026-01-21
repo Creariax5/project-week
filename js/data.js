@@ -3,60 +3,35 @@
 // ===================================
 
 var CARDS_DATABASE = {
-    disciplines: [],
-    cavaliers: [],
+    disciplines: [
+        { id: "0001", name: "Saut d'obstacles - Bronze", category: "disciplines", discipline: "Saut d'obstacles", rarity: "common", color: "#3B82F6", total: 15000, image: "images/cards/cheval-qui-saute.jpg", description: "Épreuve de saut d'obstacles niveau Bronze" },
+        { id: "0002", name: "Saut d'obstacles - Argent", category: "disciplines", discipline: "Saut d'obstacles", rarity: "common", color: "#3B82F6", total: 12000, image: "images/cards/mec-qui-saute.jpg", description: "Épreuve de saut d'obstacles niveau Argent" },
+        { id: "0003", name: "Saut d'obstacles - Or", category: "disciplines", discipline: "Saut d'obstacles", rarity: "rare", color: "#3B82F6", total: 8000, image: "images/cards/julien-epaillard.jpg", description: "Épreuve de saut d'obstacles niveau Or" },
+        { id: "0004", name: "Course de Plat", category: "disciplines", discipline: "Courses", rarity: "common", color: "#F97316", total: 15000, image: "images/cards/frankie-dettori.jpg", description: "Course hippique sur terrain plat" },
+        { id: "0005", name: "Course d'Obstacle", category: "disciplines", discipline: "Courses", rarity: "common", color: "#F97316", total: 12000, image: "images/cards/cheval-la.jpg", description: "Course d'obstacles - Steeple-chase" },
+        { id: "0006", name: "Dressage Classique", category: "disciplines", discipline: "Dressage", rarity: "common", color: "#10B981", total: 15000, image: "images/cards/coté-1.jpg", description: "Épreuve de dressage classique" },
+        { id: "0007", name: "Dressage Artistique", category: "disciplines", discipline: "Dressage", rarity: "rare", color: "#10B981", total: 8000, image: "images/cards/penelope.jpg", description: "Dressage artistique et chorégraphie équestre" },
+        { id: "0008", name: "Western - Reining", category: "disciplines", discipline: "Western", rarity: "rare", color: "#8B5CF6", total: 5000, image: "images/cards/cheval-qui-saute.jpg", description: "Discipline western - Reining" },
+        { id: "0009", name: "Western - Barrel Racing", category: "disciplines", discipline: "Western", rarity: "ultra-rare", color: "#8B5CF6", total: 3000, image: "images/cards/mec-qui-saute.jpg", description: "Course de barils - Barrel Racing" }
+    ],
+    cavaliers: [
+        { id: "0010", name: "Pénélope Leprevost", category: "cavaliers", type: "actif", rarity: "common", discipline: "Saut d'obstacles", nationality: "🇫🇷", total: 12000, image: "images/cards/penelope-leprevost.png", description: "Cavalière française de saut d'obstacles, multiple médaillée olympique" },
+        { id: "0011", name: "Pauline Basquin", category: "cavaliers", type: "actif", rarity: "common", discipline: "Saut d'obstacles", nationality: "🇫🇷", total: 12000, image: "images/cards/penelope.jpg", description: "Jeune talent du saut d'obstacles français" },
+        { id: "0012", name: "Gaspard Maksud", category: "cavaliers", type: "actif", rarity: "common", discipline: "Saut d'obstacles", nationality: "🇫🇷", total: 10000, image: "images/cards/mec-qui-saute.jpg", description: "Cavalier professionnel de saut d'obstacles" },
+        { id: "0013", name: "Kevin Staut", category: "cavaliers", type: "actif", rarity: "rare", discipline: "Saut d'obstacles", nationality: "🇫🇷", total: 7000, image: "images/cards/julien-epaillard.jpg", description: "Champion de saut d'obstacles, médaillé olympique" },
+        { id: "0014", name: "Simon Delestre", category: "cavaliers", type: "actif", rarity: "rare", discipline: "Saut d'obstacles", nationality: "🇫🇷", total: 7000, image: "images/cards/mec-qui-saute.jpg", description: "Grand cavalier français, multiple vainqueur de Grand Prix" },
+        { id: "0015", name: "Julien Épaillard", category: "cavaliers", type: "actif", rarity: "rare", discipline: "Saut d'obstacles", nationality: "🇫🇷", total: 6000, image: "images/cards/julien-epaillard.jpg", description: "Champion olympique et vainqueur de nombreux Grand Prix" },
+        { id: "0016", name: "Martin Fuchs", category: "cavaliers", type: "actif", rarity: "ultra-rare", discipline: "Saut d'obstacles", nationality: "🇨🇭", total: 3000, image: "images/cards/cheval-qui-saute.jpg", description: "Star suisse du saut d'obstacles" },
+        { id: "0017", name: "Isabell Werth", category: "cavaliers", type: "actif", rarity: "ultra-rare", discipline: "Dressage", nationality: "🇩🇪", total: 3000, image: "images/cards/coté-1.jpg", description: "Légende vivante du dressage, multiple championne olympique" },
+        { id: "0018", name: "Pierre Durand", category: "cavaliers", type: "legende", rarity: "legendary", discipline: "Saut d'obstacles", nationality: "🇫🇷", total: 500, image: "images/cards/frankie-dettori.jpg", description: "Champion olympique 1988 avec Jappeloup - Légende française" },
+        { id: "0019", name: "Michel Robert", category: "cavaliers", type: "legende", rarity: "legendary", discipline: "Saut d'obstacles", nationality: "🇫🇷", total: 500, image: "images/cards/mec-qui-saute.jpg", description: "Figure emblématique du saut d'obstacles français" },
+        { id: "0020", name: "John Whitaker", category: "cavaliers", type: "legende", rarity: "legendary", discipline: "Saut d'obstacles", nationality: "🇬🇧", total: 400, image: "images/cards/julien-epaillard.jpg", description: "Légende britannique du saut d'obstacles avec Milton" }
+    ],
     chevaux: [],
     duos: [],
     moments: [],
     event: []
 };
-var CARDS_LOADED = false;
-
-// Load cards from JSON file
-async function loadCardsDatabase() {
-    if (CARDS_LOADED) return CARDS_DATABASE;
-    
-    try {
-        const response = await fetch('cards-database.json');
-        const data = await response.json();
-        
-        // Group cards by category
-        CARDS_DATABASE = {
-            disciplines: [],
-            cavaliers: [],
-            chevaux: [],
-            duos: [],
-            moments: [],
-            event: []
-        };
-        
-        data.cards.forEach(card => {
-            const category = card.category;
-            if (CARDS_DATABASE[category]) {
-                CARDS_DATABASE[category].push(card);
-            }
-        });
-        
-        CARDS_LOADED = true;
-        console.log('Cards database loaded:', data.cards.length, 'cards');
-        return CARDS_DATABASE;
-    } catch (error) {
-        console.error('Error loading cards database:', error);
-        // Fallback to empty database
-        CARDS_DATABASE = {
-            disciplines: [],
-            cavaliers: [],
-            chevaux: [],
-            duos: [],
-            moments: [],
-            event: []
-        };
-        return CARDS_DATABASE;
-    }
-}
-
-// Initialize database on load
-loadCardsDatabase();
 
 // Rarity weights for pack opening
 var RARITY_WEIGHTS = RARITY_WEIGHTS || {

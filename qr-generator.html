@@ -155,11 +155,8 @@
             rarity: 'all'
         };
 
-        document.addEventListener('DOMContentLoaded', async () => {
+        document.addEventListener('DOMContentLoaded', () => {
             setupFilters();
-            // Attendre que les cartes soient chargées
-            await loadCardsDatabase();
-            console.log('Cards loaded, generating QR codes...');
             generateQRCodes();
         });
 
@@ -186,8 +183,6 @@
             grid.innerHTML = '';
 
             let cards = getAllCards();
-            
-            console.log('Total cards found:', cards.length);
 
             // Apply filters
             if (currentFilter.category !== 'all') {
@@ -196,13 +191,6 @@
 
             if (currentFilter.rarity !== 'all') {
                 cards = cards.filter(card => card.rarity === currentFilter.rarity);
-            }
-            
-            console.log('Cards after filtering:', cards.length);
-
-            if (cards.length === 0) {
-                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-secondary);">Aucune carte trouvée</p>';
-                return;
             }
 
             cards.forEach(card => {
