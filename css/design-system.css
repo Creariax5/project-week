@@ -53,7 +53,57 @@ body {
     font-family: 'Fira Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color: var(--text);
     line-height: 1.6;
-    background: var(--light);
+    background: #000000;
+}
+
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Burger Menu Button */
+.burger-menu {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1100;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+}
+
+.burger-menu:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-xl);
+}
+
+.burger-menu:active {
+    transform: scale(0.95);
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.show {
+    opacity: 1;
 }
 
 /* ========================================
@@ -832,12 +882,36 @@ body {
         --sidebar-width: 0;
     }
     
+    /* Show burger menu */
+    .burger-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Show overlay when menu is open */
+    .sidebar-overlay {
+        display: block;
+    }
+    
+    /* Hide sidebar by default */
     .ds-sidebar {
-        padding: var(--space-md);
+        position: fixed;
+        width: 280px;
+        max-height: 100vh;
+        padding: var(--space-xl);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    /* Show sidebar when active */
+    .ds-sidebar.show {
+        transform: translateX(0);
     }
     
     .ds-main {
         padding: var(--space-md);
+        padding-top: 80px;
     }
     
     .ds-header {

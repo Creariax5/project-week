@@ -13,9 +13,17 @@
     <link rel="stylesheet" href="css/design-system.css">
 </head>
 <body>
+    <!-- Burger Menu Button -->
+    <button class="burger-menu" id="burgerMenu" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+    </button>
+    
     <div class="ds-container">
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        
         <!-- SIDEBAR -->
-        <aside class="ds-sidebar">
+        <aside class="ds-sidebar" id="sidebar">
             <div class="ds-sidebar-header">
                 <h1 class="ds-logo">Design System</h1>
                 <p class="ds-tagline">EQUIX & Salon du Cheval</p>
@@ -460,6 +468,20 @@
     </div>
 
     <script>
+        // Burger menu toggle
+        const burgerMenu = document.getElementById('burgerMenu');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        
+        function toggleMenu() {
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+            document.body.classList.toggle('menu-open');
+        }
+        
+        burgerMenu.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+        
         // Navigation smooth scroll
         document.querySelectorAll('.ds-nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -468,6 +490,11 @@
                 // Update active state
                 document.querySelectorAll('.ds-nav-link').forEach(l => l.classList.remove('active'));
                 this.classList.add('active');
+                
+                // Fermer le menu sur mobile
+                if (window.innerWidth <= 576) {
+                    toggleMenu();
+                }
                 
                 // Scroll to section
                 const targetId = this.getAttribute('href').slice(1);
