@@ -10,7 +10,9 @@ let currentFilter = {
 
 let currentView = 'grid';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Wait for cards database to load
+    await loadCardsDatabase();
     initCollection();
 });
 

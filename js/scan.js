@@ -8,7 +8,9 @@ var cameras = cameras || [];
 
 if (!window.scanInitialized) {
     window.scanInitialized = true;
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Wait for cards database to load
+        await loadCardsDatabase();
         initScan();
     });
 }

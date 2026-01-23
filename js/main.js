@@ -2,7 +2,9 @@
 // MAIN.JS - Homepage logic
 // ===================================
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Wait for cards database to load
+    await loadCardsDatabase();
     initHomepage();
 });
 

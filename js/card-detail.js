@@ -5,7 +5,9 @@
 let currentCard = null;
 let currentDetailTab = 'info';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Wait for cards database to load
+    await loadCardsDatabase();
     initCardDetail();
 });
 
