@@ -127,12 +127,31 @@ function generateSecretCode(cardId) {
 }
 
 function validateSecretCode(secretCode) {
-    var code = secretCode.toUpperCase();
+    var code = secretCode.toUpperCase().trim();
     
-    // Format attendu: SC + 6 chiffres (ex: SC000001)
-    if (code.startsWith('SC') && code.length === 8) {
-        // Extraire l'ID en enlevant le préfixe et les zéros initiaux
-        var cardId = code.substring(2).replace(/^0+/, '') || '0';
+    // Accepter différents formats: SC0001, SC00001, SC000001, etc.
+    if (code.startsWith('SC') && code.length >= 3) {
+        // Extraire la partie numérique après SC
+        var numericPart = code.substring(2);
+        
+        // Vérifier que c'est bien des chiffres
+        if (/^\d+$/.test(numericPart)) {
+            // Convertir en nombre puis reformater avec 4 chiffres (format des IDs dans la base)
+            var cardNumber = parseInt(numericPart, 10);
+            var cardId = cardNumber.toString().padStart(4, '0');
+            
+            // Chercher la carte avec cet ID
+            var card = getCardById(cardId);
+            if (card) {
+                return card.id;
+            }
+        }
+    }
+    
+    // Si pas de préfixe SC, essayer directement comme un nombre
+    if (/^\d+$/.test(code)) {
+        var cardNumber = parseInt(code, 10);
+        var cardId = cardNumber.toString().padStart(4, '0');
         var card = getCardById(cardId);
         if (card) {
             return card.id;
