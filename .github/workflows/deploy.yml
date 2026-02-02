@@ -22,7 +22,7 @@ jobs:
             cd /opt/project-week
             
             # Pull latest code
-            git pull origin main || git clone https://github.com/TON-COMPTE/project-week.git .
+            git pull origin main || git clone https://github.com/Creariax5/project-week.git .
             
             # Rebuild and restart
             docker-compose down
