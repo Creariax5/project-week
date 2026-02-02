@@ -41,8 +41,8 @@
 }
 
 .mini-card.ultra-rare {
-    border-color: rgba(168, 85, 247, 0.3);
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(168, 85, 247, 0.02) 100%);
+    border-color: rgba(37, 99, 235, 0.3);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(37, 99, 235, 0.02) 100%);
 }
 
 .mini-card.legendary {
@@ -77,7 +77,7 @@
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    border-radius: var(--radius-lg);
+    border-radius: 0;
     transition: var(--transition-slow);
 }
 
@@ -96,9 +96,10 @@
 
 .trading-card img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: var(--radius-lg);
+    border-radius: 0;
 }
 
 @media (min-width: 769px) {
@@ -149,15 +150,23 @@
     flex: 1;
 }
 
+.card-image-container {
+    width: 100%;
+    flex: 1;
+    position: relative;
+}
+
 .card-image-container img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: var(--radius-md);
+    border-radius: 0;
 }
 
 .card-image img {
     width: 100%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
     display: block;
 }
 
@@ -237,9 +246,9 @@
 }
 
 .rarity-badge.ultra-rare {
-    background: rgba(168, 85, 247, 0.15);
+    background: rgba(37, 99, 235, 0.15);
     color: var(--ultra-rare);
-    border: 1px solid rgba(168, 85, 247, 0.3);
+    border: 1px solid rgba(37, 99, 235, 0.3);
 }
 
 .rarity-badge.legendary {
@@ -322,7 +331,7 @@
 
 .search-input:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-glow), 0 0 20px rgba(124, 92, 252, 0.1);
+    box-shadow: 0 0 0 3px var(--accent-glow), 0 0 20px rgba(30, 64, 175, 0.1);
 }
 
 .filter-select {
@@ -338,7 +347,7 @@
     outline: none;
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239b7eff' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%233b82f6' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
     padding-right: 32px;
@@ -552,4 +561,53 @@
 .close-modal:hover {
     background: rgba(239, 68, 68, 0.2);
     border-color: rgba(239, 68, 68, 0.4);
+}
+
+/* ===============
+   IMAGE ROTATION FIX
+   =============== */
+
+/* Force les images à être en mode portrait */
+.trading-card .card-image-container,
+.card-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.trading-card .card-image,
+.card-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Rotation automatique des images horizontales */
+.trading-card img,
+.card-image img,
+.card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0;
+}
+
+/* Classe pour les images nécessitant une rotation */
+.rotated-card,
+.trading-card img.landscape,
+.card-image img.landscape,
+.card-image-container img.landscape {
+    transform: rotate(90deg) scale(0.75) !important;
+    transform-origin: center center !important;
+    width: auto !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    max-width: none !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
 }

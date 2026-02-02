@@ -33,18 +33,18 @@
     --glass-blur: 20px;
 
     /* Accent Gradient (Primary) */
-    --accent: #7c5cfc;
-    --accent-dark: #6246e5;
-    --accent-light: #9b7eff;
-    --accent-gradient: linear-gradient(135deg, #667eea 0%, #7c5cfc 50%, #a855f7 100%);
-    --accent-gradient-h: linear-gradient(90deg, #667eea 0%, #7c5cfc 50%, #a855f7 100%);
-    --accent-glow: rgba(124, 92, 252, 0.35);
-    --accent-glow-strong: rgba(124, 92, 252, 0.6);
+    --accent: #1e40af;
+    --accent-dark: #1e3a8a;
+    --accent-light: #3b82f6;
+    --accent-gradient: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
+    --accent-gradient-h: linear-gradient(90deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
+    --accent-glow: rgba(30, 64, 175, 0.35);
+    --accent-glow-strong: rgba(30, 64, 175, 0.6);
 
     /* Secondary Accent */
     --secondary: #00d2ff;
     --secondary-dark: #00b4d8;
-    --secondary-gradient: linear-gradient(135deg, #00d2ff 0%, #7c5cfc 100%);
+    --secondary-gradient: linear-gradient(135deg, #00d2ff 0%, #1e40af 100%);
 
     /* Text */
     --text-primary: #f0f0f8;
@@ -54,14 +54,14 @@
     /* Rarity Colors */
     --common: #8b95a5;
     --rare: #4facfe;
-    --ultra-rare: #a855f7;
+    --ultra-rare: #2563eb;
     --legendary: #fbbf24;
     --mythic: #ef4444;
 
     /* Rarity Glows */
     --common-glow: rgba(139, 149, 165, 0.2);
     --rare-glow: rgba(79, 172, 254, 0.3);
-    --ultra-rare-glow: rgba(168, 85, 247, 0.3);
+    --ultra-rare-glow: rgba(37, 99, 235, 0.3);
     --legendary-glow: rgba(251, 191, 36, 0.3);
     --mythic-glow: rgba(239, 68, 68, 0.3);
 
@@ -126,9 +126,9 @@ body::before {
     width: 200%;
     height: 200%;
     background:
-        radial-gradient(ellipse at 20% 50%, rgba(124, 92, 252, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 50%, rgba(30, 64, 175, 0.08) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 20%, rgba(0, 210, 255, 0.05) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
+        radial-gradient(ellipse at 50% 80%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
     z-index: 0;
     pointer-events: none;
     animation: ambientFloat 20s ease-in-out infinite;
@@ -542,7 +542,7 @@ body::before {
 }
 
 .action-card.shop .action-icon {
-    background: linear-gradient(135deg, rgba(79, 172, 254, 0.15), rgba(124, 92, 252, 0.15));
+    background: linear-gradient(135deg, rgba(79, 172, 254, 0.15), rgba(30, 64, 175, 0.15));
     color: var(--rare);
 }
 .action-card.scan .action-icon {
@@ -550,7 +550,7 @@ body::before {
     color: var(--secondary);
 }
 .action-card.collection .action-icon {
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(124, 92, 252, 0.15));
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(30, 64, 175, 0.15));
     color: var(--ultra-rare);
 }
 .action-card.trade .action-icon {
@@ -989,7 +989,7 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(124, 92, 252, 0.05);
+    background: rgba(30, 64, 175, 0.05);
     backdrop-filter: blur(10px);
     font-size: 3rem;
     animation: placeholderPulse 2s ease-in-out infinite;
@@ -1036,12 +1036,12 @@ img[src] {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(124, 92, 252, 0.3);
+    background: rgba(30, 64, 175, 0.3);
     border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(124, 92, 252, 0.5);
+    background: rgba(30, 64, 175, 0.5);
 }
 
 /* ===============
@@ -1049,6 +1049,6 @@ img[src] {
    =============== */
 
 ::selection {
-    background: rgba(124, 92, 252, 0.3);
+    background: rgba(30, 64, 175, 0.3);
     color: white;
 }

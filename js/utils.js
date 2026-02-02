@@ -257,7 +257,7 @@ function getRarityColor(rarity) {
     const colors = {
         'common': '#9CA3AF',
         'rare': '#3B82F6',
-        'ultra-rare': '#8B5CF6',
+        'ultra-rare': '#2563eb',
         'legendary': '#F59E0B',
         'mythic': '#EF4444'
     };
@@ -523,13 +523,105 @@ function supportsWebP() {
     return false;
 }
 
+// ===================================
+// IMAGE ROTATION FIX
+// ===================================
+
+// Détecter et corriger l'orientation des images horizontales
+function fixImageOrientation(img) {
+    // Fonction pour vérifier et appliquer la rotation
+    const checkAndRotate = () => {
+        // Vérifier si l'image est chargée et a des dimensions valides
+        if (!img.complete || img.naturalWidth === 0 || img.naturalHeight === 0) {
+            return;
+        }
+
+        const width = img.naturalWidth;
+        const height = img.naturalHeight;
+
+        console.log(`Image: ${img.src}, Dimensions: ${width}x${height}`);
+
+        // Si l'image est horizontale (largeur > hauteur), la faire pivoter
+        if (width > height) {
+            console.log('Image horizontale détectée, rotation appliquée');
+            img.classList.add('landscape', 'rotated-card');
+            img.style.transform = 'rotate(90deg)';
+            img.style.width = 'auto';
+            img.style.height = '100%';
+            img.style.maxWidth = 'none';
+        } else {
+            // Retirer la classe si l'image est déjà en portrait
+            img.classList.remove('landscape', 'rotated-card');
+        }
+    };
+
+    // Si l'image est déjà chargée
+    if (img.complete && img.naturalWidth > 0) {
+        checkAndRotate();
+    } else {
+        // Attendre le chargement
+        img.addEventListener('load', checkAndRotate);
+        // Sécurité : réessayer après un court délai
+        setTimeout(checkAndRotate, 100);
+    }
+}
+
+// Observer pour corriger automatiquement toutes les images de cartes
+function initCardImageFixer() {
+    console.log('Initialisation du correcteur d\'orientation d\'images');
+
+    // Fonction pour traiter toutes les images de cartes
+    const processCardImages = () => {
+        const cardImages = document.querySelectorAll('.trading-card img, .card-image img, .card-image-container img');
+        console.log(`${cardImages.length} images de cartes trouvées`);
+        cardImages.forEach(img => {
+            fixImageOrientation(img);
+        });
+    };
+
+    // Traiter les images existantes
+    processCardImages();
+
+    // Réessayer après un délai pour les images chargées dynamiquement
+    setTimeout(processCardImages, 500);
+    setTimeout(processCardImages, 1000);
+    setTimeout(processCardImages, 2000);
+
+    // Observer les nouvelles images ajoutées dynamiquement
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            mutation.addedNodes.forEach(node => {
+                if (node.nodeType === 1) { // Element node
+                    // Si c'est une image de carte
+                    if (node.tagName === 'IMG' && node.closest('.trading-card, .card-image, .card-image-container')) {
+                        fixImageOrientation(node);
+                    }
+
+                    // Chercher des images dans les nœuds ajoutés
+                    const images = node.querySelectorAll?.('.trading-card img, .card-image img, .card-image-container img');
+                    if (images) {
+                        images.forEach(img => fixImageOrientation(img));
+                    }
+                }
+            });
+        });
+    });
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+}
+
 // Initialiser le lazy loading au chargement de la page
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         LazyImageObserver.init();
         preloadCriticalImages();
+        initCardImageFixer();
     });
 } else {
     LazyImageObserver.init();
     preloadCriticalImages();
+    initCardImageFixer();
 }
