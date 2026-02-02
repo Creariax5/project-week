@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Échanger - Salon du Cheval 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -14,7 +17,7 @@
         <!-- Header -->
         <header class="app-header">
             <div class="header-nav">
-                <a href="index.html" class="back-btn">← Retour</a>
+                <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Retour</a>
                 <h1>Échanges</h1>
             </div>
         </header>
@@ -24,16 +27,16 @@
             <!-- Tabs -->
             <section class="trade-tabs">
                 <button class="trade-tab active" data-tab="offers">
-                    <span class="tab-icon">↓</span>
+                    <span class="tab-icon"><i class="fa-solid fa-inbox"></i></span>
                     <span class="tab-label">Offres</span>
                     <span class="tab-badge">3</span>
                 </button>
                 <button class="trade-tab" data-tab="market">
-                    <span class="tab-icon">◈</span>
+                    <span class="tab-icon"><i class="fa-solid fa-store"></i></span>
                     <span class="tab-label">Marché</span>
                 </button>
                 <button class="trade-tab" data-tab="my-trades">
-                    <span class="tab-icon">↑</span>
+                    <span class="tab-icon"><i class="fa-solid fa-paper-plane"></i></span>
                     <span class="tab-label">Mes échanges</span>
                 </button>
             </section>
@@ -44,7 +47,7 @@
                     <div class="trade-offer">
                         <div class="offer-header">
                             <div class="user-info">
-                                <div class="user-avatar">◉</div>
+                                <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
                                 <div>
                                     <div class="user-name">EquiFan92</div>
                                     <div class="user-rating">★★★★★ (48)</div>
@@ -60,7 +63,7 @@
                                     <div class="card-rarity">★★ Rare</div>
                                 </div>
                             </div>
-                            <div class="offer-arrow">⇄</div>
+                            <div class="offer-arrow"><i class="fa-solid fa-right-left"></i></div>
                             <div class="offer-side">
                                 <p class="side-label">Cherche</p>
                                 <div class="mini-card ultra-rare">
@@ -78,7 +81,7 @@
                     <div class="trade-offer">
                         <div class="offer-header">
                             <div class="user-info">
-                                <div class="user-avatar">◉</div>
+                                <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
                                 <div>
                                     <div class="user-name">ChevalPassion</div>
                                     <div class="user-rating">★★★★ (31)</div>
@@ -98,7 +101,7 @@
                                     <div class="card-rarity">★ Commun</div>
                                 </div>
                             </div>
-                            <div class="offer-arrow">⇄</div>
+                            <div class="offer-arrow"><i class="fa-solid fa-right-left"></i></div>
                             <div class="offer-side">
                                 <p class="side-label">Cherche</p>
                                 <div class="mini-card rare">
@@ -183,14 +186,14 @@
             <section class="tab-content" id="my-trades-tab">
                 <div class="create-offer-btn-container">
                     <button class="create-offer-btn" id="create-offer">
-                        + Créer une offre d'échange
+                        <i class="fa-solid fa-plus"></i> Créer une offre d'échange
                     </button>
                 </div>
 
                 <div class="my-trades-list">
                     <h3>En cours</h3>
                     <div class="trade-item pending">
-                        <div class="trade-status">⏳ En attente</div>
+                        <div class="trade-status"><i class="fa-solid fa-clock"></i> En attente</div>
                         <div class="trade-summary">
                             <span>Vous proposez: <strong>Big Star</strong></span>
                             <span>Contre: <strong>Explosion W</strong></span>
@@ -200,7 +203,7 @@
 
                     <h3>Historique</h3>
                     <div class="trade-item completed">
-                        <div class="trade-status">✓ Terminé</div>
+                        <div class="trade-status"><i class="fa-solid fa-circle-check"></i> Terminé</div>
                         <div class="trade-summary">
                             <span>Vous avez échangé: <strong>Endurance</strong></span>
                             <span>Contre: <strong>Western</strong></span>
@@ -209,7 +212,7 @@
                     </div>
 
                     <div class="trade-item declined">
-                        <div class="trade-status">✗ Refusé</div>
+                        <div class="trade-status"><i class="fa-solid fa-circle-xmark"></i> Refusé</div>
                         <div class="trade-summary">
                             <span>Vous proposiez: <strong>Dressage</strong></span>
                             <span>Contre: <strong>Baloubet du Rouet</strong></span>
@@ -223,23 +226,23 @@
         <!-- Navigation -->
         <nav class="bottom-nav">
             <a href="index.html" class="nav-item">
-                <span class="nav-icon">⌂</span>
+                <span class="nav-icon"><i class="fa-solid fa-house"></i></span>
                 <span class="nav-label">Accueil</span>
             </a>
             <a href="shop.html" class="nav-item">
-                <span class="nav-icon">◈</span>
+                <span class="nav-icon"><i class="fa-solid fa-store"></i></span>
                 <span class="nav-label">Boutique</span>
             </a>
             <a href="scan.html" class="nav-item">
-                <span class="nav-icon">◉</span>
+                <span class="nav-icon"><i class="fa-solid fa-qrcode"></i></span>
                 <span class="nav-label">Scanner</span>
             </a>
             <a href="collection.html" class="nav-item">
-                <span class="nav-icon">■</span>
+                <span class="nav-icon"><i class="fa-solid fa-layer-group"></i></span>
                 <span class="nav-label">Collection</span>
             </a>
             <a href="trade.html" class="nav-item active">
-                <span class="nav-icon">⇄</span>
+                <span class="nav-icon"><i class="fa-solid fa-right-left"></i></span>
                 <span class="nav-label">Échanger</span>
             </a>
         </nav>

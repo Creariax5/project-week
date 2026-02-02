@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boutique - Salon du Cheval 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -14,10 +17,10 @@
         <!-- Header -->
         <header class="app-header">
             <div class="header-nav">
-                <a href="index.html" class="back-btn">← Retour</a>
+                <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Retour</a>
                 <h1>Boutique</h1>
                 <div class="credits">
-                    <span class="credits-icon">◉</span>
+                    <span class="credits-icon"><i class="fa-solid fa-coins"></i></span>
                     <span id="user-credits">500</span>
                 </div>
             </div>
@@ -34,7 +37,7 @@
                 <div class="pack-card starter">
                     <div class="pack-badge">Débutant</div>
                     <div class="pack-image">
-                        <div class="pack-icon">◻</div>
+                        <div class="pack-icon"><i class="fa-solid fa-box"></i></div>
                     </div>
                     <h3>Pack Starter</h3>
                     <p class="pack-description">Contient principalement des cartes communes des disciplines de base</p>
@@ -57,7 +60,7 @@
                 <div class="pack-card premium">
                     <div class="pack-badge">Premium</div>
                     <div class="pack-image">
-                        <div class="pack-icon">◆</div>
+                        <div class="pack-icon"><i class="fa-solid fa-gem"></i></div>
                     </div>
                     <h3>Pack Premium</h3>
                     <p class="pack-description">Meilleure chance d'obtenir des cartes rares et des cavaliers actifs</p>
@@ -80,7 +83,7 @@
                 <div class="pack-card legendary">
                     <div class="pack-badge">Légendaire</div>
                     <div class="pack-image">
-                        <div class="pack-icon">◈</div>
+                        <div class="pack-icon"><i class="fa-solid fa-crown"></i></div>
                     </div>
                     <h3>Pack Légendaire</h3>
                     <p class="pack-description">Garantit au moins une carte rare ou légendaire</p>
@@ -103,7 +106,7 @@
                 <div class="pack-card event">
                     <div class="pack-badge exclusive">Exclusif Salon</div>
                     <div class="pack-image">
-                        <div class="pack-icon">◆</div>
+                        <div class="pack-icon"><i class="fa-solid fa-fire"></i></div>
                     </div>
                     <h3>Pack Événementiel</h3>
                     <p class="pack-description">Disponible uniquement pendant le Salon du Cheval 2026</p>
@@ -156,23 +159,23 @@
         <!-- Navigation -->
         <nav class="bottom-nav">
             <a href="index.html" class="nav-item">
-                <span class="nav-icon">⌂</span>
+                <span class="nav-icon"><i class="fa-solid fa-house"></i></span>
                 <span class="nav-label">Accueil</span>
             </a>
             <a href="shop.html" class="nav-item active">
-                <span class="nav-icon">◈</span>
+                <span class="nav-icon"><i class="fa-solid fa-store"></i></span>
                 <span class="nav-label">Boutique</span>
             </a>
             <a href="scan.html" class="nav-item">
-                <span class="nav-icon">◉</span>
+                <span class="nav-icon"><i class="fa-solid fa-qrcode"></i></span>
                 <span class="nav-label">Scanner</span>
             </a>
             <a href="collection.html" class="nav-item">
-                <span class="nav-icon">■</span>
+                <span class="nav-icon"><i class="fa-solid fa-layer-group"></i></span>
                 <span class="nav-label">Collection</span>
             </a>
             <a href="trade.html" class="nav-item">
-                <span class="nav-icon">⇄</span>
+                <span class="nav-icon"><i class="fa-solid fa-right-left"></i></span>
                 <span class="nav-label">Échanger</span>
             </a>
         </nav>
@@ -182,7 +185,7 @@
     <div id="pack-modal" class="modal">
         <div class="modal-content pack-opening">
             <div class="pack-animation" id="pack-animation">
-                <div class="pack-box">◻</div>
+                <div class="pack-box"><i class="fa-solid fa-box-open"></i></div>
             </div>
             <div class="revealed-cards" id="revealed-cards"></div>
             <button class="close-modal-btn" id="close-pack">Fermer</button>

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails de la carte - Salon du Cheval 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -15,10 +18,10 @@
         <!-- Header -->
         <header class="app-header transparent">
             <div class="header-nav">
-                <a href="javascript:history.back()" class="back-btn">← Retour</a>
+                <a href="javascript:history.back()" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Retour</a>
                 <div class="header-actions">
-                    <button class="icon-btn" id="share-card">↗</button>
-                    <button class="icon-btn" id="favorite-card">★</button>
+                    <button class="icon-btn" id="share-card"><i class="fa-solid fa-share-nodes"></i></button>
+                    <button class="icon-btn" id="favorite-card"><i class="fa-regular fa-heart"></i></button>
                 </div>
             </div>
         </header>
@@ -36,7 +39,7 @@
                             </div>
                             <div class="card-image-container">
                                 <div class="card-image" id="card-image">
-                                    <div class="placeholder-image">♞</div>
+                                    <div class="placeholder-image"><i class="fa-solid fa-horse"></i></div>
                                 </div>
                             </div>
                             <div class="card-info">
@@ -91,9 +94,9 @@
                     <div class="info-group">
                         <h3>Palmarès</h3>
                         <ul class="achievements-list" id="achievements-list">
-                            <li>◆ Champion Olympique - Séoul 1988</li>
-                            <li>◆ Vainqueur Grand Prix de Paris</li>
-                            <li>◆ Médaillé Championnats d'Europe</li>
+                            <li><i class="fa-solid fa-trophy"></i> Champion Olympique - Séoul 1988</li>
+                            <li><i class="fa-solid fa-trophy"></i> Vainqueur Grand Prix de Paris</li>
+                            <li><i class="fa-solid fa-trophy"></i> Médaillé Championnats d'Europe</li>
                         </ul>
                     </div>
 
@@ -101,7 +104,7 @@
                         <h3>Moments mythiques</h3>
                         <div class="moments-list">
                             <div class="moment-card">
-                                <div class="moment-icon">◈</div>
+                                <div class="moment-icon"><i class="fa-solid fa-bolt"></i></div>
                                 <div class="moment-info">
                                     <h4>Finale Olympique 1988</h4>
                                     <p>Parcours sans faute décisif à Séoul</p>
@@ -166,7 +169,7 @@
                         <h3>Votre historique avec cette carte</h3>
                         <div class="history-timeline">
                             <div class="timeline-item">
-                                <div class="timeline-icon">●</div>
+                                <div class="timeline-icon"><i class="fa-solid fa-circle"></i></div>
                                 <div class="timeline-content">
                                     <h4>Obtenue</h4>
                                     <p>Pack Légendaire</p>
@@ -206,20 +209,125 @@
             <!-- Actions -->
             <section class="card-actions-section">
                 <button class="action-btn secondary" id="trade-card">
-                    ⇄ Échanger
+                    <i class="fa-solid fa-right-left"></i> Échanger
                 </button>
                 <button class="action-btn secondary" id="sell-card">
-                    ◉ Vendre
+                    <i class="fa-solid fa-coins"></i> Vendre
                 </button>
                 <button class="action-btn primary" id="view-similar">
-                    ◈ Cartes similaires
+                    <i class="fa-solid fa-clone"></i> Cartes similaires
                 </button>
             </section>
         </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <script src="js/data.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/card-detail.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const ctx = document.getElementById('value-chart');
+        if (!ctx) return;
+
+        // Generate random price evolution over 12 months
+        const months = ['Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc', 'Jan', 'Fév'];
+        let price = 420;
+        const prices = months.map(function () {
+            price += Math.round((Math.random() - 0.35) * 80);
+            if (price < 200) price = 200 + Math.round(Math.random() * 50);
+            return price;
+        });
+        // Ensure last value matches the displayed 850
+        prices[prices.length - 1] = 850;
+
+        const accentPurple = '#7c5cfc';
+        const accentCyan = '#00d2ff';
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Valeur (◉)',
+                    data: prices,
+                    borderColor: accentPurple,
+                    backgroundColor: function (context) {
+                        var chart = context.chart;
+                        var ctx2 = chart.ctx;
+                        var area = chart.chartArea;
+                        if (!area) return 'transparent';
+                        var gradient = ctx2.createLinearGradient(0, area.top, 0, area.bottom);
+                        gradient.addColorStop(0, 'rgba(124, 92, 252, 0.35)');
+                        gradient.addColorStop(1, 'rgba(124, 92, 252, 0.0)');
+                        return gradient;
+                    },
+                    borderWidth: 2.5,
+                    pointBackgroundColor: accentPurple,
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 1.5,
+                    pointRadius: 3,
+                    pointHoverRadius: 6,
+                    pointHoverBackgroundColor: accentCyan,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(6, 6, 14, 0.9)',
+                        borderColor: 'rgba(124, 92, 252, 0.4)',
+                        borderWidth: 1,
+                        titleColor: '#e2e8f0',
+                        bodyColor: '#a78bfa',
+                        bodyFont: { weight: '700', size: 14 },
+                        padding: 10,
+                        cornerRadius: 8,
+                        displayColors: false,
+                        callbacks: {
+                            label: function (item) {
+                                return item.parsed.y + ' ◉';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.04)',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: 'rgba(255, 255, 255, 0.4)',
+                            font: { size: 11, family: 'Inter' }
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.04)',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: 'rgba(255, 255, 255, 0.4)',
+                            font: { size: 11, family: 'Inter' },
+                            callback: function (value) {
+                                return value + ' ◉';
+                            }
+                        },
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    });
+    </script>
 </body>
 </html>
