@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scanner - Salon du Cheval 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -16,7 +19,7 @@
         <!-- Header -->
         <header class="app-header">
             <div class="header-nav">
-                <a href="index.html" class="back-btn">← Retour</a>
+                <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Retour</a>
                 <h1>Scanner une carte</h1>
             </div>
         </header>
@@ -31,31 +34,31 @@
                     
                     <div class="scanner-controls">
                         <button class="scanner-btn" id="start-scan">
-                            📷 Démarrer le scan
+                            <i class="fa-solid fa-camera"></i> Démarrer le scan
                         </button>
                         <button class="scanner-btn secondary" id="stop-scan" style="display: none;">
-                            ⏹ Arrêter
+                            <i class="fa-solid fa-stop"></i> Arrêter
                         </button>
                         <button class="scanner-btn secondary" id="switch-camera" style="display: none;">
-                            🔄 Changer de caméra
+                            <i class="fa-solid fa-rotate"></i> Changer de caméra
                         </button>
                     </div>
                     
                     <div class="manual-input" style="margin-top: 2rem;">
-                        <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Ou entrez le code manuellement</h3>
+                        <h3 style="margin-bottom: 1rem;">Ou entrez le code manuellement</h3>
                         <div style="display: flex; gap: 0.5rem;">
-                            <input 
-                                type="text" 
-                                id="manual-code" 
-                                placeholder="Ex: A7F3K9B2" 
+                            <input
+                                type="text"
+                                id="manual-code"
+                                placeholder="Ex: A7F3K9B2"
                                 maxlength="8"
-                                style="flex: 1; padding: 0.75rem; border: 2px solid var(--gray-200); border-radius: 0.5rem; font-size: 1rem; font-family: monospace; text-transform: uppercase; background: var(--card-bg); color: var(--text-primary);"
+                                style="flex: 1; padding: 0.75rem; font-size: 1rem; text-transform: uppercase;"
                             />
-                            <button 
-                                id="submit-manual" 
+                            <button
+                                id="submit-manual"
                                 class="scanner-btn"
                                 style="padding: 0.75rem 1.5rem;">
-                                ✓ Valider
+                                Valider
                             </button>
                         </div>
                     </div>
@@ -72,11 +75,11 @@
             <section class="scan-tips">
                 <h3>Conseils de scan</h3>
                 <ul class="tips-list">
-                    <li>✓ Assurez-vous d'avoir un bon éclairage</li>
-                    <li>✓ Tenez le QR code bien droit face à la caméra</li>
-                    <li>✓ Évitez les reflets sur la carte</li>
-                    <li>✓ Le code secret à 8 caractères est affiché sur le QR code</li>
-                    <li>✓ Maintenez une distance de 10-20cm</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Assurez-vous d'avoir un bon éclairage</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Tenez le QR code bien droit face à la caméra</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Évitez les reflets sur la carte</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Le code secret à 8 caractères est affiché sur le QR code</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Maintenez une distance de 10-20cm</li>
                 </ul>
             </section>
         </main>
@@ -84,23 +87,23 @@
         <!-- Navigation -->
         <nav class="bottom-nav">
             <a href="index.html" class="nav-item">
-                <span class="nav-icon">⌂</span>
+                <span class="nav-icon"><i class="fa-solid fa-house"></i></span>
                 <span class="nav-label">Accueil</span>
             </a>
             <a href="shop.html" class="nav-item">
-                <span class="nav-icon">◈</span>
+                <span class="nav-icon"><i class="fa-solid fa-store"></i></span>
                 <span class="nav-label">Boutique</span>
             </a>
             <a href="scan.html" class="nav-item active">
-                <span class="nav-icon">◉</span>
+                <span class="nav-icon"><i class="fa-solid fa-qrcode"></i></span>
                 <span class="nav-label">Scanner</span>
             </a>
             <a href="collection.html" class="nav-item">
-                <span class="nav-icon">■</span>
+                <span class="nav-icon"><i class="fa-solid fa-layer-group"></i></span>
                 <span class="nav-label">Collection</span>
             </a>
             <a href="trade.html" class="nav-item">
-                <span class="nav-icon">⇄</span>
+                <span class="nav-icon"><i class="fa-solid fa-right-left"></i></span>
                 <span class="nav-label">Échanger</span>
             </a>
         </nav>
